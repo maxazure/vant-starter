@@ -92,7 +92,14 @@ export default {
     text-align: center;
     background-color: #39a9ed;
   }
+  .pro-container{
+    /* overflow: hidden; */
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+  }
   .pro-container .pro-i{
-    float: left;
+    /* float: left; */
   }
 </style>

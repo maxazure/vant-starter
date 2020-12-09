@@ -24,9 +24,9 @@ export default {
 
 <style scoped>
 .pro-i{
-  width:49.9%;
+  width:50%;
   line-height: 150%;
-  height: 260px;
+  /* height: 260px; */
 }
 .pro-i .title{
   font-size: 14px;
