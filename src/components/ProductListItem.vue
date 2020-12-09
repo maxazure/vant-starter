@@ -1,9 +1,12 @@
 <template>
   <div class="pro-i">
-    <van-image width="100%" src="https://img.yzcdn.cn/vant/cat.jpeg" />
-    <div class="title">美特斯邦威短袖t恤男纯白上衣纯色简约打底衫潮纯棉白色男士体恤</div>
-    <div class="desc">经典纯色 简约时尚 轻薄舒适</div>
-    <div class="price">￥420</div>
+    <router-link :to="{ path: '/detail/'+ product.id, params: { id: product.id }}">
+      <van-image :src="product.photo" width="200" height="300" />
+    </router-link>
+    
+    <div class="title"><router-link :to="{ path: '/detail/'+ product.id, params: { id: product.id }}">{{product.name}}</router-link></div>
+    <div class="desc">{{product.intro}}</div>
+    <div class="price" :style="priceStyle">￥{{product.price}}</div>
   </div>
 </template>
 
@@ -15,10 +18,13 @@ export default {
     [Button.name]: Button,
     [VanImage.name]: VanImage,
   },
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
+   computed: {
+      priceStyle () {
+        return 'color: ' + this.priceColor;
+      }
+    },
+  name: 'mx-product-list-item',
+  props: ["product", "imgSize", "priceColor"]
 }
 </script>
 
@@ -26,11 +32,14 @@ export default {
 .pro-i{
   width:50%;
   line-height: 150%;
-  /* height: 260px; */
+}
+.pro-i .title, .pro-i .desc, .pro-i .price{
+    padding: 0 6px;
 }
 .pro-i .title{
   font-size: 14px;
   color: #333;
+
 }
 
 .pro-i .desc{
@@ -41,7 +50,6 @@ export default {
 .pro-i .price{
   font-size: 16px;
   font-weight: bold;
-  color: red;
 
 }
 </style>

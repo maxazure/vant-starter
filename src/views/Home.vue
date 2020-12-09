@@ -34,22 +34,22 @@
     <van-tabs v-model="active">
       <van-tab title="男装">
         <div class="pro-container">
-            <product-list-item v-for="item in list" :key="item" />
+            <product-list-item :product="item" v-for="item in list1" :key="item.id" />
         </div>
       </van-tab>
       <van-tab title="女装">
         <div class="pro-container">
-            <product-list-item v-for="item in list" :key="item" />
+            <product-list-item :product="item" v-for="item in list2" :key="item.id" />
         </div>
       </van-tab>
       <van-tab title="童装">
         <div class="pro-container">
-            <product-list-item v-for="item in list" :key="item" />
+            <product-list-item :product="item" v-for="item in list3" :key="item.id" priceColor="red" />
         </div>
       </van-tab>
       <van-tab title="羽绒服">
         <div class="pro-container">
-            <product-list-item v-for="item in list" :key="item" />
+            <product-list-item :product="item" v-for="item in list4" :key="item.id" priceColor="red" />
         </div>
       </van-tab>
     </van-tabs>
@@ -60,7 +60,7 @@
 <script>
 import ProductListItem from "@/components/ProductListItem";
 import { Search, Swipe, SwipeItem,Grid, GridItem, Icon, Tab, Tabs  } from 'vant';
-
+import {getProductListForHome} from "@/api/product"
 export default {
   components:{
     [Search.name]: Search,
@@ -74,11 +74,27 @@ export default {
     ["product-list-item"]: ProductListItem,
   },
   name: 'Home',
+  created() {
+    this.getProductList(1,"list1");
+    this.getProductList(2,"list2");
+    this.getProductList(3,"list3");
+    this.getProductList(4,"list4");
+  },
+    methods: {
+    async getProductList(id,list){
+      const response = await getProductListForHome(id);
+      this[list] = response.data;
+      console.log(this[list]);
+    },
+  },
    data() {
     return {
       value: '',
       active: 2,
-      list:[1,2,3,4,5,6,7,8,9,10],
+      list1:[],
+      list2:[],
+      list3:[],
+      list4:[],
     };
   },
 
