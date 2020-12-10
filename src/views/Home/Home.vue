@@ -3,10 +3,7 @@
     <van-search v-model="value" placeholder="请输入搜索关键词" />
 
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-      <van-swipe-item>1</van-swipe-item>
-      <van-swipe-item>2</van-swipe-item>
-      <van-swipe-item>3</van-swipe-item>
-      <van-swipe-item>4</van-swipe-item>
+      <van-swipe-item v-for="item in Swipes" :key="item.id"><img src="item.image"/></van-swipe-item>
     </van-swipe>
 
     <van-grid>
@@ -30,6 +27,8 @@
         <span class="van-grid-item__text">签到</span>
       </van-grid-item>
     </van-grid>
+
+    <van-divider class="divider" >推荐商品</van-divider>
 
     <van-tabs v-model="active">
       <van-tab title="男装">
@@ -59,9 +58,12 @@
 
 <script>
 import ProductListItem from "@/components/ProductListItem";
-import { Search, Swipe, SwipeItem,Grid, GridItem, Icon, Tab, Tabs  } from 'vant';
-import {getProductListForHome} from "@/api/product"
+import { Search, Swipe, SwipeItem,Grid, GridItem, Icon, Tab, Tabs, Divider  } from 'vant';
+import {getProductListForHome} from "@/api/product";
+import {getSwipesForHome} from "@/api/home"
+
 export default {
+  name: 'Home',
   components:{
     [Search.name]: Search,
     [Swipe.name]: Swipe,
@@ -71,21 +73,25 @@ export default {
     [Icon.name]: Icon,
     [Tab.name]: Tab,
     [Tabs.name]: Tabs,
+    [Divider.name]: Divider,
     ["product-list-item"]: ProductListItem,
   },
-  name: 'Home',
   created() {
     this.getProductList(1,"list1");
     this.getProductList(2,"list2");
     this.getProductList(3,"list3");
     this.getProductList(4,"list4");
+    this.getSwipes()
   },
-    methods: {
+  methods: {
     async getProductList(id,list){
       const response = await getProductListForHome(id);
-      this[list] = response.data;
-      console.log(this[list]);
+      this[list] = response.data
     },
+    async getSwipes(){
+      const response = await getSwipesForHome()
+      this.Swipes = response.data
+    }
   },
    data() {
     return {
@@ -95,27 +101,24 @@ export default {
       list2:[],
       list3:[],
       list4:[],
-    };
-  },
-
+      Swipes:[]
+    }
+  }
 }
 </script>
 <style>
   .my-swipe .van-swipe-item {
-    color: #fff;
-    font-size: 20px;
-    line-height: 150px;
-    text-align: center;
-    background-color: #39a9ed;
+    height: 150px;
   }
   .pro-container{
-    /* overflow: hidden; */
     display:flex;
     flex-wrap: wrap;
     justify-content: space-between;
-
   }
-  .pro-container .pro-i{
-    /* float: left; */
+  .divider{
+    color: #333333;
+    font-weight: bold;
+    border-color: #D7D7D7;
+    margin-bottom: 0;
   }
 </style>
