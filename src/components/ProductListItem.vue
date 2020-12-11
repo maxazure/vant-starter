@@ -1,6 +1,6 @@
 <template>
   <div class="pro-i">
-    <router-link :to="{ path: '/detail/'+ product.id, params: { id: product.id }}">
+    <router-link :to="{ path: '/ProductDetail'}">
       <van-image :src="product.photo" width="100%" height="300" />
     </router-link>
     
@@ -9,7 +9,7 @@
     <div class="price-container">
       <div v-if="!product.market_price" class="price" :style="priceStyle">￥{{product.price}}</div>
       <div v-else class="market_price" :style="priceStyle">￥{{product.market_price}}</div>
-      <div class="priceoff-button">限时折扣</div>
+      <div class="priceoff-box">限时折扣</div>
     </div>
   </div>
 </template>
@@ -70,7 +70,7 @@ export default {
   font-weight: bold;
 }
 
-.pro-i .priceoff-button{
+.pro-i .priceoff-box{
   float: right;
   margin-right: 10px;
   width: 60px;

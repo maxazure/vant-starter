@@ -6,3 +6,10 @@ export function getProductListForHome(id) {
     method: 'get'
   })
 }
+
+export function getProductInfo(id) {
+  return request({
+    url: '/products/'+id,
+    method: 'get'
+  })
+}
