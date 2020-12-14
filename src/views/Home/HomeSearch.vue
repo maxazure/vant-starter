@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import ProductListItem from "@/components/ProductListItem";
+import ProductListItem from "@/components/ProductListItem.vue";
 import {getProductListForHome} from "@/api/product";
 import { Search } from 'vant';
 

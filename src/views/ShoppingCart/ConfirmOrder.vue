@@ -1,27 +1,32 @@
 <template>
   <div>
+    <adress-in-confirm-order></adress-in-confirm-order>
     <shopping-cart-item></shopping-cart-item>
     <shopping-cart-item></shopping-cart-item>
     <shopping-cart-item></shopping-cart-item>
     <shopping-cart-item></shopping-cart-item>
     <shopping-cart-item></shopping-cart-item>
-    <van-submit-bar :price="3050" button-text="提交订单" @submit="onSubmit" />
+    <van-submit-bar :price="3050" button-text="立即付款" @submit="onSubmit" />
   </div>
 </template>
 
 <script>
 import { Card, SubmitBar } from 'vant';
+
 import ShoppingCartItem from '@/components/ShoppingCartItem.vue'
+import AdressInConfirmOrder from '@/components/AdressInConfirmOrder.vue'
+
 import {getProductListForHome} from '@/api/product'
 
 export default {
 
-  name:'ShoppingCart',
+  name:'ConfirmOrder',
 
   components:{
     [Card.name]: Card,
     [SubmitBar.name]:SubmitBar,
-    ['shopping-cart-item']:ShoppingCartItem
+    ['shopping-cart-item']:ShoppingCartItem,
+    ['adress-in-confirm-order']: AdressInConfirmOrder
   },
 
   data(){
