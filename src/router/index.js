@@ -47,6 +47,24 @@ const routes = [
     path: '/NewAdress',
     name:'NewAdress',
     component: () => import('@/views/UserCenter/NewAdress')
+  },
+
+  {
+    path: '/RevisePersonalInfo',
+    name:'RevisePersonalInfo',
+    component: () => import('@/views/UserCenter/RevisePersonalInfo')
+  },
+
+  {
+    path: '/MyOrder',
+    name:'MyOrder',
+    component: () => import('@/views/UserCenter/MyOrder')
+  },
+
+  {
+    path: '/OrderSucceed',
+    name:'OrderSucceed',
+    component: () => import('@/views/ShoppingCart/OrderSucceed')
   }
 ]
 
