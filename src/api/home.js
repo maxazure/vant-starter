@@ -6,3 +6,10 @@ export function getSwipesForHome() {
     method: 'get'
   })
 }
+
+export function getIconsLine() {
+  return request({
+    url: '/buttons',
+    method: 'get'
+  })
+}

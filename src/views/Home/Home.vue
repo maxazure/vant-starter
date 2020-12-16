@@ -3,32 +3,10 @@
     <van-search v-model="value" placeholder="请输入搜索关键词" />
 
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-      <van-swipe-item v-for="item in Swipes" :key="item.id"
-        ><img src="item.image"
-      /></van-swipe-item>
+      <van-swipe-item v-for="item in Swipes" :key="item.id"><van-image :src="item.image"/></van-swipe-item>
     </van-swipe>
 
-    <van-grid>
-      <van-grid-item>
-        <van-icon name="gem-o" class="van-grid-item__icon" color="red" />
-        <span class="van-grid-item__text">会员</span>
-      </van-grid-item>
-
-      <van-grid-item>
-        <van-icon name="star-o" class="van-grid-item__icon" color="red" />
-        <span class="van-grid-item__text">精选</span>
-      </van-grid-item>
-
-      <van-grid-item>
-        <van-icon name="coupon-o" class="van-grid-item__icon" color="red" />
-        <span class="van-grid-item__text">优惠券</span>
-      </van-grid-item>
-
-      <van-grid-item>
-        <van-icon name="location-o" class="van-grid-item__icon" color="red" />
-        <span class="van-grid-item__text">签到</span>
-      </van-grid-item>
-    </van-grid>
+    <icons-line-in-home :IconsLine="IconsLine"></icons-line-in-home>
 
     <van-divider class="divider">推荐商品</van-divider>
 
@@ -76,7 +54,8 @@
 </template>
 
 <script>
-import ProductListItem from '@/components/ProductListItem'
+import ProductListItem from '@/components/ProductListItem.vue'
+import IconsLineInHome from '@/components/IconsLineInHome'
 import {
   Search,
   Swipe,
@@ -86,10 +65,11 @@ import {
   Icon,
   Tab,
   Tabs,
-  Divider
+  Divider,
+   Image as VanImage
 } from 'vant'
 import { getProductListForHome } from '@/api/product'
-import { getSwipesForHome } from '@/api/home'
+import { getSwipesForHome, getIconsLine } from '@/api/home'
 
 export default {
   name: 'Home',
@@ -103,7 +83,9 @@ export default {
     [Tab.name]: Tab,
     [Tabs.name]: Tabs,
     [Divider.name]: Divider,
-    ['product-list-item']: ProductListItem
+    [VanImage.name]:VanImage,
+    ['product-list-item']: ProductListItem,
+    ['icons-line-in-home']: IconsLineInHome
   },
   created() {
     this.getProductList(1, 'list1')
@@ -111,6 +93,7 @@ export default {
     this.getProductList(3, 'list3')
     this.getProductList(4, 'list4')
     this.getSwipes()
+    this.getIconsLine()
   },
   methods: {
     async getProductList(id, list) {
@@ -120,6 +103,11 @@ export default {
     async getSwipes() {
       const response = await getSwipesForHome()
       this.Swipes = response.data
+    },
+
+    async getIconsLine(){
+      const response = await getIconsLine()
+      this.IconsLine = response.data
     }
   },
   data() {
@@ -130,7 +118,8 @@ export default {
       list2: [],
       list3: [],
       list4: [],
-      Swipes: []
+      Swipes: [],
+      IconsLine:[]
     }
   }
 }

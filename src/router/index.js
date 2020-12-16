@@ -20,6 +20,12 @@ const routes = [
   },
 
   {
+    path: '/HomeSearch',
+    name:'HomeSearch',
+    component:  () => import('@/views/Home/HomeSearch')
+  },
+
+  {
     path: '/ProductDetail',
     name:'ProductDetail',
     component:  () => import('@/views/ProductCategory/ProductDetail')
@@ -35,6 +41,17 @@ const routes = [
     path: '/ConfirmOrder',
     name:'ConfirmOrder',
     component: () => import('@/views/ShoppingCart/ConfirmOrder')
+  },
+
+  {
+    path: '/Me',
+    name:'Me',
+    component: Layout,
+    children: [{
+      path: '',
+      component: () => import('@/views/UserCenter/Me')
+      }
+    ]
   },
 
   {
@@ -58,7 +75,12 @@ const routes = [
   {
     path: '/MyOrder',
     name:'MyOrder',
-    component: () => import('@/views/UserCenter/MyOrder')
+    component: Layout,
+    children: [{
+      path: '',
+      component: () => import('@/views/UserCenter/MyOrder')
+      }
+    ]
   },
 
   {
