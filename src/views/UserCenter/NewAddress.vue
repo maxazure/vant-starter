@@ -1,4 +1,6 @@
 <template>
+  <div>
+    <van-nav-bar title="标题" left-text="返回" left-arrow @click-left="onClickLeft"/>
     <van-address-edit
   :area-list="areaList"
   show-postal
@@ -11,14 +13,16 @@
   @delete="onDelete"
   @change-detail="onChangeDetail"
 />
+  </div>
 </template>
 
 <script>
-import { AddressEdit } from 'vant'
+import { AddressEdit,NavBar } from 'vant'
 
 export default {
   components:{
-    [AddressEdit.name]:AddressEdit
+    [AddressEdit.name]:AddressEdit,
+    [NavBar.name]:NavBar
   },
 
    data() {

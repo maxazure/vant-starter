@@ -1,5 +1,6 @@
 <template>
   <div style="background-color:#797979">
+    <van-nav-bar :title="$route.params.params" left-text="返回" left-arrow @click-left="onClickLeft"/>
     <van-cell-group>
       <van-cell v-for="(item,index) in title" :key="index" clickable is-link center>
         <template #title>
@@ -11,7 +12,7 @@
 </template>
 
 <script>
-import { Col, Row, Cell, CellGroup }from 'vant'
+import { Col, Row, Cell, CellGroup, NavBar }from 'vant'
 
 export default {
   name:'AdressInConfirmOrder',
@@ -20,7 +21,8 @@ export default {
     [Col.name]:Col,
     [Row.name]:Row,
     [Cell.name]:Cell,
-    [CellGroup.name]:CellGroup
+    [CellGroup.name]:CellGroup,
+    [NavBar.name]:NavBar
   },
 
   data(){
@@ -29,7 +31,11 @@ export default {
     }
   },
 
-  methods:{}
+  methods:{
+     onClickLeft(){
+      this.$router.go(-1)
+    }
+  }
 }
 </script>
 

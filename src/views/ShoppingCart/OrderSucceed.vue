@@ -1,5 +1,6 @@
 <template>
   <div>
+    <van-nav-bar title="标题" left-text="返回" left-arrow @click-left="onClickLeft"/>
     <div style="position:absolute;top:40%;left:50%;transform:translate(-50%,-50%)">成功下单</div>
     <div style="position:absolute;top:50%;text-align:center;width:100vw;">订单号：2983894344545454554</div>
     <div style="position:absolute;top:60%;left:50%;transform:translate(-50%,-50%)">
@@ -13,11 +14,12 @@
 </template>
 
 <script>
-import { Button } from 'vant'
+import { Button,NavBar } from 'vant'
 
 export default {
   components:{
-    [Button.name]:Button
+    [Button.name]:Button,
+    [NavBar.name]:NavBar
   }  
 }
 </script>

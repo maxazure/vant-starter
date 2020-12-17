@@ -11,18 +11,29 @@ const routes = [
   {
     path: '/',
     component: Layout,
+    redirect: '/Home',
     children: [{
-      path: '',
+      path: 'Home',
       name: 'Home',
       component: Home
+      },{ 
+      path: 'HomeSearch',
+      name:'HomeSearch',
+      component:  () => import('@/views/Home/HomeSearch')
+      },{
+      path: 'ShoppingCart/:params',
+      name:'ShoppingCart',
+      component:  () => import('@/views/ShoppingCart/ShoppingCart')
+      },{
+      path: 'Me',
+      name:'Me',
+      component: () => import('@/views/UserCenter/Me')
+      },{
+      path: 'MyOrder/:params',
+      name:'MyOrder',
+      component: () => import('@/views/UserCenter/MyOrder')
       }
     ]
-  },
-
-  {
-    path: '/HomeSearch',
-    name:'HomeSearch',
-    component:  () => import('@/views/Home/HomeSearch')
   },
 
   {
@@ -32,59 +43,31 @@ const routes = [
   },
 
   {
-    path: '/ShoppingCart',
-    name:'ShoppingCart',
-    component:  () => import('@/views/ShoppingCart/ShoppingCart')
-  },
-
-  {
-    path: '/ConfirmOrder',
+    path: '/ConfirmOrder/:params',
     name:'ConfirmOrder',
     component: () => import('@/views/ShoppingCart/ConfirmOrder')
   },
 
   {
-    path: '/Me',
-    name:'Me',
-    component: Layout,
-    children: [{
-      path: '',
-      component: () => import('@/views/UserCenter/Me')
-      }
-    ]
+    path: '/MyAddress/:params',
+    name:'MyAddress',
+    component: () => import('@/views/UserCenter/MyAddress')
   },
 
   {
-    path: '/MyAdress',
-    name:'MyAdress',
-    component: () => import('@/views/UserCenter/MyAdress')
+    path: '/NewAddress/:params',
+    name:'NewAddress',
+    component: () => import('@/views/UserCenter/NewAddress')
   },
 
   {
-    path: '/NewAdress',
-    name:'NewAdress',
-    component: () => import('@/views/UserCenter/NewAdress')
-  },
-
-  {
-    path: '/RevisePersonalInfo',
+    path: '/RevisePersonalInfo//:params',
     name:'RevisePersonalInfo',
     component: () => import('@/views/UserCenter/RevisePersonalInfo')
   },
 
   {
-    path: '/MyOrder',
-    name:'MyOrder',
-    component: Layout,
-    children: [{
-      path: '',
-      component: () => import('@/views/UserCenter/MyOrder')
-      }
-    ]
-  },
-
-  {
-    path: '/OrderSucceed',
+    path: '/OrderSucceed/:params',
     name:'OrderSucceed',
     component: () => import('@/views/ShoppingCart/OrderSucceed')
   }
