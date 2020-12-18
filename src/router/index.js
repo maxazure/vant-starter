@@ -32,6 +32,10 @@ const routes = [
       path: 'MyOrder/:params',
       name:'MyOrder',
       component: () => import('@/views/UserCenter/MyOrder')
+      },{
+      path: 'ProductCategory',
+      name:'ProductCategory',
+      component: () => import('@/views/ProductCategory/ProductCategory')
       }
     ]
   },

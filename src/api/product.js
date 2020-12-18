@@ -13,3 +13,17 @@ export function getProductInfo(id) {
     method: 'get'
   })
 }
+
+export function Search(product_name) {
+  return request({
+    url: '/search/' + product_name,
+    method: 'get'
+  })
+}
+
+export function getCategory() {
+  return request({
+    url: '/categories',
+    method: 'get'
+  })
+}

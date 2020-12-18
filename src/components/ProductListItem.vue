@@ -1,10 +1,9 @@
 <template>
-  <div class="pro-i">
-    <router-link :to="{ path: '/ProductDetail'}">
-      <van-image :src="product.photo" width="100%" height="300" />
-    </router-link>
+  <div class="pro-i" @click="click">
+
+    <van-image :src="product.photo" width="100%" height="300" />
     
-    <div class="title"><router-link class="title-content" :to="{ path: '/detail/'+ product.id, params: { id: product.id }}">{{product.name}}</router-link></div>
+    <div class="title">{{product.name}}</div>
     <div class="desc">{{product.intro}}</div>
     <div class="price-container">
       <div v-if="!product.market_price" class="price" :style="priceStyle">￥{{product.price}}</div>
@@ -29,7 +28,13 @@ export default {
     }
   },
   name: 'product-list-item',
-  props: ["product", "imgSize", "priceColor"]
+  props: ["product", "imgSize", "priceColor"],
+
+  methods: {
+    click(){
+      this.$router.push({name:'ProductDetail'})
+    }
+  }
 }
 </script>
 

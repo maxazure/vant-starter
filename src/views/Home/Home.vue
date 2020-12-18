@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <van-search v-model="value" placeholder="请输入搜索关键词" />
+    <van-search v-model="search" placeholder="请输入搜索关键词" @keydown.enter="Search"/>
 
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
       <van-swipe-item v-for="item in Swipes" :key="item.id"><van-image :src="item.image"/></van-swipe-item>
@@ -108,6 +108,10 @@ export default {
     async getIconsLine(){
       const response = await getIconsLine()
       this.IconsLine = response.data
+    },
+
+    Search(){
+      this.$router.push({name:'HomeSearch',query:{product_name:this.search}})
     }
   },
   data() {
@@ -119,7 +123,8 @@ export default {
       list3: [],
       list4: [],
       Swipes: [],
-      IconsLine:[]
+      IconsLine:[],
+      search:''
     }
   }
 }
