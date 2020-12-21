@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function getProductListForHome(id) {
+export function getTwoColProductList(id) {
   return request({
     url: '/categories/'+id,
     method: 'get'

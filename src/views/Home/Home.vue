@@ -68,7 +68,7 @@ import {
   Divider,
    Image as VanImage
 } from 'vant'
-import { getProductListForHome } from '@/api/product'
+import { getTwoColProductList } from '@/api/product'
 import { getSwipesForHome, getIconsLine } from '@/api/home'
 
 export default {
@@ -97,7 +97,7 @@ export default {
   },
   methods: {
     async getProductList(id, list) {
-      const response = await getProductListForHome(id)
+      const response = await getTwoColProductList(id)
       this[list] = response.data
     },
     async getSwipes() {

@@ -10,8 +10,25 @@ const routes = [
 
   {
     path: '/',
+    name:'SignIn',
+    component: () => import('@/views/SignIn/SignIn')
+  },
+
+  {
+    path:'/LostPassword',
+    name:'LostPassword',
+    component: () => import('@/views/SignIn/LostPassword'),
+  },
+
+  {
+    path:'/Register',
+    name:'Register',
+    component: () => import('@/views/SignIn/Register'),
+  },
+
+  {
+    path: '/Home',
     component: Layout,
-    redirect: '/Home',
     children: [{
       path: 'Home',
       name: 'Home',
@@ -21,7 +38,7 @@ const routes = [
       name:'HomeSearch',
       component:  () => import('@/views/Home/HomeSearch')
       },{
-      path: 'ShoppingCart/:params',
+      path: 'ShoppingCart',
       name:'ShoppingCart',
       component:  () => import('@/views/ShoppingCart/ShoppingCart')
       },{
