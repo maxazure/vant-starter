@@ -1,12 +1,5 @@
 import request from '@/utils/request'
 
-export function getShoppingCart() {
-  return request({
-    url: '/cartitems',
-    method: 'get'
-  })
-}
-
 export function getShoppingCartItem(id) {
   return request({
     url: '/cartitems/'+id,

@@ -11,7 +11,12 @@ const getDefaultState = () => {
   }
 }
 
-const state = getDefaultState()
+const state = {
+  token: getToken(),
+  name: '',
+  fullname: '',
+  id: ''
+}
 
 const mutations = {
   RESET_STATE: (state) => {
@@ -35,8 +40,6 @@ const actions = {
   // user login
   login({ commit }, userInfo) {
     const { username, password } = userInfo
-
-    console.log(username)
     return new Promise((resolve, reject) => {
       login({ username: username.trim(), password: password }).then(response => {
         const { data } = response
