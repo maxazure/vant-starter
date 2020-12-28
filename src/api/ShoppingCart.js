@@ -1,8 +1,8 @@
 import request from '@/utils/request'
 
-export function getShoppingCartItem(id) {
+export function getShoppingCartItem() {
   return request({
-    url: '/cartitems/'+id,
+    url: '/currentusercart',
     method: 'get'
   })
 }

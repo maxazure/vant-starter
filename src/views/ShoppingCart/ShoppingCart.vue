@@ -1,11 +1,7 @@
 <template>
   <div>
     <shopping-cart-item></shopping-cart-item>
-    <shopping-cart-item></shopping-cart-item>
-    <shopping-cart-item></shopping-cart-item>
-    <shopping-cart-item></shopping-cart-item>
-    <shopping-cart-item></shopping-cart-item>
-    <van-submit-bar style="position:absolute;bottom:50px" :price="3050" button-text="提交订单" @submit="onSubmit" />
+    <van-submit-bar style="position:fixed;bottom:50px" :price="3050" button-text="提交订单" />
   </div>
 </template>
 

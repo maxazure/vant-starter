@@ -1,9 +1,9 @@
 <template>
   <div>
-    <van-checkbox-group v-model="CartList">
-      <div style="display:flex">
+    <van-checkbox-group v-model="CartListSelected">
+      <div style="display:flex" v-for="item in CartList" :key="item.id">
         <van-checkbox class="checkbox" name="a"></van-checkbox>
-        <van-card class="van-card" num="2" price="2.00" desc="描述信息" title="商品标题" thumb="https://img.yzcdn.cn/vant/ipad.jpeg"/>
+        <van-card class="van-card" :num="item.quantity" price="2.00" desc="描述信息" title="商品标题" thumb="https://img.yzcdn.cn/vant/ipad.jpeg"/>
       </div>
     </van-checkbox-group>
   </div>
@@ -11,7 +11,7 @@
 
 <script>
 import { Card, Checkbox, CheckboxGroup } from 'vant';
-
+import {getShoppingCartItem} from '@/api/ShoppingCart'
 
 export default {
 
@@ -25,13 +25,22 @@ export default {
 
   data(){
     return{
+      CartListSelected:[],
       CartList:[]
     }
   },
 
-  methods: {},
+  methods: {
+    async getShoppingCartItem(){
+      const response = await getShoppingCartItem()
+      console.log(response);
+      this.CartList = response.data
+    }
+  },
 
-  created(){}
+  created(){
+    this.getShoppingCartItem()
+  }
 }
 </script>
 
