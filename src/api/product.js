@@ -23,7 +23,7 @@ export function Search(product_name) {
 
 export function getCategory() {
   return request({
-    url: '/categories',
+    url: '/categorieslist',
     method: 'get'
   })
 }

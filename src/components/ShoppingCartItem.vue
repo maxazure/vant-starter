@@ -33,7 +33,6 @@ export default {
   methods: {
     async getShoppingCartItem(){
       const response = await getShoppingCartItem()
-      console.log(response);
       this.CartList = response.data
     }
   },
