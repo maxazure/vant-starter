@@ -7,6 +7,13 @@ export function getShoppingCartItem() {
   })
 }
 
+export function cleanShoppingCartItem() {
+  return request({
+    url: '/currentusercart',
+    method: 'delete'
+  })
+}
+
 export function addShoppingCartItem(data) {
   return request({
     url: '/cartitems',
