@@ -23,7 +23,7 @@ export default {
         return 'color: ' + this.priceColor;
       }
     },
-  name: 'mx-product-list-item',
+  name: 'product-list-item',
   props: ["product", "imgSize", "priceColor"]
 }
 </script>

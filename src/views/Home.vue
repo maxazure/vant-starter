@@ -71,7 +71,7 @@ export default {
     [Icon.name]: Icon,
     [Tab.name]: Tab,
     [Tabs.name]: Tabs,
-    ["product-list-item"]: ProductListItem,
+    [ProductListItem.name]: ProductListItem,
   },
   name: 'Home',
   created() {
