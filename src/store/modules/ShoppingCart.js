@@ -1,12 +1,12 @@
 import Cookies from 'js-cookie'
 
 const state = {
-  ShoppingCart: JSON.parse(Cookies.get('ShoppingCart')) || {}
+  ShoppingCart: Cookies.get('ShoppingCart') || {}
 }
 
 const mutations = {
   AddShoppingCartItem: (state,payload) => {
-    Object.assign(state.ShoppingCart, payload)
+    state.ShoppingCart = Object.assign(JSON.parse(state.ShoppingCart), payload)
     Cookies.set('ShoppingCart', JSON.stringify(state.ShoppingCart))
   },
 
