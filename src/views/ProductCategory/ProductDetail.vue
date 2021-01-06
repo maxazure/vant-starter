@@ -26,22 +26,36 @@
           <van-tag plain type="danger">标签</van-tag>
         </template>
         <template #footer>
-          <van-button v-if="showPlusMinus" size="mini" style="width:50%;padding: 0" @click.stop="number++">+</van-button>
-          <van-button v-if="showPlusMinus" size="mini" style="width:50%;padding: 0" :disabled='!number' @click.stop="number--">-</van-button>
+          <van-button v-if="showPlusMinus" size="mini" style="position:absolute;left:0;width:50%;padding: 0" @click.stop="number++">+</van-button>
+          <van-button v-if="showPlusMinus" size="mini" style="position:absolute;right:0;width:50%;padding: 0" :disabled='!number' @click.stop="number--">-</van-button>
         </template>
+      </van-card>
 
-        <div>
-          <div>颜色</div>
+        <div style="margin:20px">
+          <div style="margin-bottom:10px">颜色：</div>
+          <div style="height:40px;width:40px;background:black" @click="chooseColor"></div>
         </div>
 
-        <div></div>
-      </van-card>
+        <div style="margin:20px">
+          <div style="margin-bottom:10px">尺码：</div>
+          <div style="height:30px;width:80px;border: solid 1px black;line-height:30px" @click="chooseSize">165/76A/S</div>
+        </div>
+
+        <div style="margin:20px">
+          <div style="margin-bottom:10px">配送方式：</div>
+          <van-radio-group v-model=" ExpressDelivery">
+            <van-radio name="1">门店自提</van-radio>
+            <van-radio name="2">快递配送</van-radio>
+          </van-radio-group>
+        </div>
+
+        <van-button style="width:100%;position:fixed;bottom:0" @click="confirm">确定</van-button>
     </van-action-sheet>
   </div>
 </template>
 
 <script>
-import { Image as VanImage,GoodsAction, GoodsActionIcon, GoodsActionButton, ActionSheet, Card, Button, Tag } from 'vant';
+import { Image as VanImage,GoodsAction, GoodsActionIcon, GoodsActionButton, ActionSheet, Card, Button, Tag, RadioGroup, Radio } from 'vant';
 import {getProductInfo} from '@/api/product';
 
 export default {
@@ -56,7 +70,9 @@ export default {
     [ActionSheet.name]:ActionSheet,
     [Card.name]:Card,
     [Button.name]:Button,
-    [Tag.name]:Tag
+    [Tag.name]:Tag,
+    [RadioGroup.name]:RadioGroup,
+    [Radio.name]:Radio
   },
 
   data(){
@@ -67,6 +83,9 @@ export default {
       price:10,
       originalprice:'',
       description: 'hsoiuadha',
+      ExpressDelivery: '1',
+      color:'',
+      size:'',
       showcard:false,
       showPlusMinus: false
     }
@@ -83,6 +102,18 @@ export default {
       NewItem[this.product.id] = 2
       this.$store.commit('shoppingcart/AddShoppingCartItem',NewItem)
       console.log(this.$store.getters.ShoppingCart);
+    },
+
+    chooseColor(){
+      this.color = 1
+    },
+
+    chooseSize(){
+      this.size = '165/76A/S'
+    },
+
+    confirm(){
+      this.$router.push({name:'ShoppingCart'})
     }
   },
 
