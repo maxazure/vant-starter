@@ -3,28 +3,18 @@
 
     <van-search v-model="search" placeholder="请输入搜索关键词"></van-search>
 
-    <van-sidebar v-model="activeKey" style="height:100%">
-      <van-sidebar-item v-for="item in Categories" :key="item.id" :title="item.name">
-      </van-sidebar-item>
-    </van-sidebar>
-
-    <div style="position:absolute;top:54px;left:80px;">
-      <div v-for="(item1, index1) in subcategories" :key='index1'>
-        <van-divider>{{item1.name}}</van-divider>
-        <div style="display:flex;justify-content:space-between">
-          <product-list-item v-for="item2 in item1.products" :key="item2.id" :product="item2"/>
-        </div>
-      </div>
-    </div>
+    <van-tabs v-model="active">
+      <van-tab v-for="item1 in Categories" :key="item1.id" :title="item1.name" style="display:flex;justify-content:space-betweem">
+        <div v-for="(item2, key2) in item1.subcategories" :key="key2" style="width:33.33%;height:180px;background:grey;display:inline-block">{{item2.name}}</div>
+      </van-tab>
+    </van-tabs>
 
   </div>
 </template>
 
 <script>
-import { Search, getCategory } from "@/api/product";
-import { Search as VanSearch, Sidebar, SidebarItem,Divider } from 'vant';
-import ProductListItem from '@/components/ProductListItem';
-
+import { Search, getCategory} from "@/api/product";
+import { Search as VanSearch, Tab, Tabs  } from 'vant';
 
 export default {
 
@@ -32,10 +22,8 @@ export default {
 
   components:{
     [VanSearch.name]:VanSearch,
-    [Sidebar.name]:Sidebar,
-    [SidebarItem.name]:SidebarItem,
-    [Divider.name]:Divider,
-    ['product-list-item']: ProductListItem
+    [Tab.name]:Tab,
+    [Tabs.name]:Tabs
   },
 
   data(){
@@ -43,7 +31,7 @@ export default {
       search:'',
       Categories:[],
       subcategories:[],
-      activeKey:0
+      active:0
     }
   },
 
