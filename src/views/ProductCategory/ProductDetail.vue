@@ -10,11 +10,12 @@
     <div class="subtitle">{{product.intro}}</div>
     <van-goods-action>
       <van-goods-action-icon icon="chat-o" text="客服" dot />
-      <van-goods-action-icon icon="cart-o" text="购物车" badge="5" />
+      <van-goods-action-icon icon="cart-o" text="购物车" badge="5" @click="$router.push({name:'ShoppingCart'})"/>
       <van-goods-action-icon icon="shop-o" text="店铺" badge="12" />
       <van-goods-action-button type="warning" text="加入购物车" @click="showcard = !showcard"/>
-      <van-goods-action-button type="danger" text="立即购买" />
+      <van-goods-action-button type="danger" text="立即购买" @click="showcard = !showcard"/>
     </van-goods-action>
+
     <van-action-sheet v-model="showcard" title="标题" :style="{height:'100%'}">
       <van-card :num="number" :price="price" :desc="description" :title="cardtitle" thumb="https://img.yzcdn.cn/vant/ipad.jpeg" @click="showPlusMinus = !showPlusMinus">
         <template v-if="originalprice" #origin-price>
