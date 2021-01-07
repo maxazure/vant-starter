@@ -51,7 +51,7 @@ export default {
 
     Login(){
       this.$store.dispatch('user/login', this.value)
-      this.$router.push('/Home')
+      this.$router.go(0)
     }
   }
 }
