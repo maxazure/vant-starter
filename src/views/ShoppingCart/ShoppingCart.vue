@@ -1,7 +1,7 @@
 <template>
   <div>
     <shopping-cart-item></shopping-cart-item>
-    <van-submit-bar style="position:fixed;bottom:50px" :price="3050" button-text="提交订单" />
+    <van-submit-bar style="position:fixed;bottom:50px" :price="3050" button-text="提交订单" @submit="ConfirmOrder"/>
   </div>
 </template>
 
@@ -28,6 +28,10 @@ export default {
   methods: {
     onClickLeft(){
       this.$router.go(-1)
+    },
+
+    ConfirmOrder(){
+      this.$router.push({name:'ConfirmOrder'})
     }
   },
 

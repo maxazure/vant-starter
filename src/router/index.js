@@ -64,7 +64,7 @@ const routes = [
   },
 
   {
-    path: '/ConfirmOrder/:params',
+    path: '/ConfirmOrder',
     name:'ConfirmOrder',
     component: () => import('@/views/ShoppingCart/ConfirmOrder')
   },
@@ -88,7 +88,7 @@ const routes = [
   },
 
   {
-    path: '/OrderSucceed/:params',
+    path: '/OrderSucceed/',
     name:'OrderSucceed',
     component: () => import('@/views/ShoppingCart/OrderSucceed')
   }
