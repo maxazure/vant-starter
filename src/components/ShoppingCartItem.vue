@@ -1,9 +1,9 @@
 <template>
   <div>
-    <van-checkbox-group v-model="CartListSelected">
+    <van-checkbox-group v-model="CartListSelected" @change="CartListChange">
       <div style="display:flex" v-for="item in CartList" :key="item.id">
-        <van-checkbox class="checkbox" name="a"></van-checkbox>
-        <van-card class="van-card" :num="item.quantity" price="2.00" desc="描述信息" title="商品标题" thumb="https://img.yzcdn.cn/vant/ipad.jpeg"/>
+        <van-checkbox class="checkbox" :name="item.product_id"></van-checkbox>
+        <van-card class="van-card" :num="item.quantity" :price="item.price" desc="描述信息" :title="item.name" thumb="https://img.yzcdn.cn/vant/ipad.jpeg"/>
       </div>
     </van-checkbox-group>
   </div>
@@ -11,7 +11,6 @@
 
 <script>
 import { Card, Checkbox, CheckboxGroup } from 'vant';
-import {getShoppingCartItem} from '@/api/ShoppingCart'
 
 export default {
 
@@ -23,23 +22,31 @@ export default {
     [CheckboxGroup.name]: CheckboxGroup
   },
 
+  model:{
+    event: 'change'
+  },
+
+  props:['value','CartList'],
+
   data(){
     return{
-      CartListSelected:[],
-      CartList:[]
+      CartListSelected:this.value
+    }
+  },
+
+  watch:{
+    value:{
+      handler(val){
+        this.CartListSelected = val
+      }
     }
   },
 
   methods: {
-    async getShoppingCartItem(){
-      const response = await getShoppingCartItem()
-      this.CartList = response.data
+    CartListChange(){
+      this.$emit('change',this.CartListSelected)
     }
-  },
-
-  created(){
-    this.getShoppingCartItem()
-  }
+  }   
 }
 </script>
 
