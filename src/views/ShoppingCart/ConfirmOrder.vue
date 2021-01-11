@@ -44,7 +44,6 @@ export default {
   },
 
   created(){
-    this.getProductList(1)
   }
 }
 </script>

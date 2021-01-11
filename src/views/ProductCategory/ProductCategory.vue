@@ -5,7 +5,11 @@
 
     <van-tabs v-model="active">
       <van-tab v-for="item1 in Categories" :key="item1.id" :title="item1.name" style="display:flex;justify-content:space-betweem">
-        <div v-for="(item2, key2) in item1.subcategories" :key="key2" style="width:33.33%;height:180px;background:grey;display:inline-block">{{item2.name}}</div>
+        <div v-for="(item2, key2) in item1.subcategories" :key="key2" style="width:33.33%;height:180px;display:inline-block">
+          <van-image width="100%" height="85%"  fit="cover"  :src="item2.photo"></van-image>
+          <div style="display:flex;justify-content:center">{{item2.name_cn}}</div>
+          <div style="display:flex;justify-content:center">{{item2.name}}</div>
+          </div>
       </van-tab>
     </van-tabs>
 
@@ -13,8 +17,8 @@
 </template>
 
 <script>
-import { Search, getCategory} from "@/api/product";
-import { Search as VanSearch, Tab, Tabs  } from 'vant';
+import { Search, getCategory } from "@/api/product";
+import { Search as VanSearch, Tab, Tabs, Image as VanImage  } from 'vant';
 
 export default {
 
@@ -23,7 +27,8 @@ export default {
   components:{
     [VanSearch.name]:VanSearch,
     [Tab.name]:Tab,
-    [Tabs.name]:Tabs
+    [Tabs.name]:Tabs,
+    [VanImage.name]:VanImage
   },
 
   data(){

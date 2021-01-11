@@ -3,7 +3,7 @@
     <van-checkbox-group v-model="CartListSelected" @change="CartListChange">
       <div style="display:flex" v-for="item in CartList" :key="item.id">
         <van-checkbox class="checkbox" :name="item.product_id"></van-checkbox>
-        <van-card class="van-card" :num="item.quantity" :price="item.price" desc="描述信息" :title="item.name" thumb="https://img.yzcdn.cn/vant/ipad.jpeg"/>
+        <van-card class="van-card" :num="item.quantity" :price="item.price" :title="item.name" :thumb="item.photo"/>
       </div>
     </van-checkbox-group>
   </div>

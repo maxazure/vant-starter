@@ -88,10 +88,10 @@ export default {
     ['icons-line-in-home']: IconsLineInHome
   },
   created() {
-    this.getProductList(1, 'list1')
-    this.getProductList(2, 'list2')
-    this.getProductList(3, 'list3')
-    this.getProductList(4, 'list4')
+    this.getProductList(6, 'list1')
+    this.getProductList(7, 'list2')
+    this.getProductList(8, 'list3')
+    this.getProductList(9, 'list4')
     this.getSwipes()
     this.getIconsLine()
   },

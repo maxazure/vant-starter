@@ -49,8 +49,8 @@ export default {
       this.$router.push({name:'LostPassword'})
     },
 
-    Login(){
-      this.$store.dispatch('user/login', this.value)
+    async Login(){
+      await this.$store.dispatch('user/login', this.value)
       this.$router.go(0)
     }
   }
