@@ -36,3 +36,11 @@ export function delShoppingCart(id) {
     method: 'delete'
   })
 }
+
+export function getOrder(data) {
+  return request({
+    url: '/checkout',
+    method: 'post',
+    data
+  })
+}

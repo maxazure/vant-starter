@@ -1,9 +1,10 @@
 <template>
   <div>
-    <van-checkbox-group v-model="CartListSelected" @change="CartListChange">
-      <div style="display:flex" v-for="item in CartList" :key="item.id">
-        <van-checkbox class="checkbox" :name="item.product_id"></van-checkbox>
-        <van-card class="van-card" :num="item.quantity" :price="item.price" :title="item.name" :thumb="item.photo"/>
+    <van-checkbox-group v-model="ItemsSelected" @change="ListChange">
+      <div style="display:flex" v-for="(item,key) in ItemList" :key="key">
+        <van-checkbox v-if="Radio" class="checkbox" :name="item.product_id"></van-checkbox>
+        <van-card :num="item.quantity" :price="item.price" :title="item.name" :thumb="item.photo">
+        </van-card>
       </div>
     </van-checkbox-group>
   </div>
@@ -22,29 +23,42 @@ export default {
     [CheckboxGroup.name]: CheckboxGroup
   },
 
-  model:{
-    event: 'change'
+  props:{
+    List: Array,
+    Radio: {
+      type: Boolean,
+      default: true
+    }
   },
-
-  props:['value','CartList'],
 
   data(){
     return{
-      CartListSelected:this.value
+      ItemsSelected:[],
+      ItemList: this.List
     }
   },
 
   watch:{
-    value:{
+    List:{
       handler(val){
-        this.CartListSelected = val
+        this.ItemList = val
       }
     }
   },
 
   methods: {
-    CartListChange(){
-      this.$emit('change',this.CartListSelected)
+    ListChange(){
+      if (this.ItemsSelected){
+        let List = []
+        Object.values(this.ItemsSelected).forEach((item, key) => {
+          let newItem = {}
+          newItem["product_id"] = item
+          newItem["quantity"] = this.ItemList[key].quantity
+          List.push(newItem)
+          }
+        )        
+        this.$emit('NewList', List)
+      }
     }
   }   
 }
@@ -58,7 +72,7 @@ export default {
 
 .van-card{
   float: right;
-  width: 94%;
+  width: 100%;
   align-self: center;
 }
 
