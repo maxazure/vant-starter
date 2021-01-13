@@ -1,5 +1,6 @@
 <template>
   <div>
+    <van-nav-bar title="商品详情" left-text="返回" left-arrow @click-left="onClickLeft"/>
     <van-image class="image" :src="product.photo"><template v-slot:error>加载失败</template></van-image>
     <div>
       <div class="price">{{product.price}}</div>
@@ -56,7 +57,7 @@
 </template>
 
 <script>
-import { Image as VanImage,GoodsAction, GoodsActionIcon, GoodsActionButton, ActionSheet, Card, Button, Tag, RadioGroup, Radio } from 'vant';
+import { Image as VanImage, GoodsAction, GoodsActionIcon, GoodsActionButton, ActionSheet, Card, Button, Tag, RadioGroup, Radio, NavBar } from 'vant';
 import {getProductInfo} from '@/api/product';
 
 export default {
@@ -64,6 +65,7 @@ export default {
   name:'ProductDetail',
 
   components:{
+    [NavBar.name]:NavBar,
     [VanImage.name]: VanImage,
     [GoodsAction.name]: GoodsAction,
     [GoodsActionIcon.name]: GoodsActionIcon,
@@ -93,6 +95,10 @@ export default {
   },
 
   methods: {
+    onClickLeft(){
+      this.$router.go(-1)
+    },
+
     async getProductInfo(id){
       const response = await getProductInfo(id);
       this.product = response.data;
@@ -119,7 +125,7 @@ export default {
   },
 
   created(){
-    this.getProductInfo(1)
+    this.getProductInfo(this.$route.query.product_id)
   }
 }
 </script>
