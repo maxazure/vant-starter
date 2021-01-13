@@ -1,12 +1,13 @@
 <template>
   <div>
+    <van-nav-bar title="购物车"/>
     <shopping-cart-item :List="CartList" @NewList="NewList"></shopping-cart-item>
     <van-submit-bar style="position:fixed;bottom:50px" :price="totalprice" button-text="提交订单" :disabled="CartItemSelected.length === 0" @submit="ConfirmOrder"/>
   </div>
 </template>
 
 <script>
-import { Card, SubmitBar } from 'vant';
+import { Card, SubmitBar,NavBar } from 'vant';
 import ShoppingCartItem from '@/components/ShoppingCartItem.vue'
 import { getShoppingCartItem, getOrder } from '@/api/ShoppingCart'
 
@@ -17,7 +18,8 @@ export default {
   components:{
     [Card.name]: Card,
     [SubmitBar.name]:SubmitBar,
-    ['shopping-cart-item']:ShoppingCartItem
+    ['shopping-cart-item']:ShoppingCartItem,
+    [NavBar.name]:NavBar
   },
 
   data(){
