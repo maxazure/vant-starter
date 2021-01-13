@@ -1,8 +1,8 @@
 import request from '@/utils/request'
 
-export function getTwoColProductList(id) {
+export function getTwoColProductList() {
   return request({
-    url: '/categories/'+id,
+    url: '/subproductlist',
     method: 'get'
   })
 }
