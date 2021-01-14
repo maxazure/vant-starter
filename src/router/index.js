@@ -76,7 +76,7 @@ const routes = [
   },
 
   {
-    path: '/NewAddress/:params',
+    path: '/NewAddress',
     name:'NewAddress',
     component: () => import('@/views/UserCenter/NewAddress')
   },
