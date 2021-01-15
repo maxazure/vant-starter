@@ -14,3 +14,11 @@ export function addAddresses(data) {
     data
   })
 }
+
+export function getOrder() {
+  return request({
+    url: '/orders',
+    method: 'get'
+  })
+}
+

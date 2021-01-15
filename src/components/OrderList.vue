@@ -1,26 +1,32 @@
 <template>
   <div>
-    <van-divider>2020-12-10 10:10:10</van-divider>
-    <!-- <van-checkbox-group v-model="OrderList"> -->
-      <div style="display:flex">
-        <!-- <van-checkbox class="checkbox" name="a"></van-checkbox> -->
-        <van-card class="van-card" num="2" price="2.00" desc="描述信息" title="商品标题" thumb="https://img.yzcdn.cn/vant/ipad.jpeg"/>
-      </div>
-    <!-- </van-checkbox-group> -->
-    <van-row style="display:flex;justify-content:flex-end">
-      <p>总金额：</p>
-      <p style="margin-right:20px;color:#EE0A24">￥30</p>
-    </van-row>
-    <van-row style="display:flex;justify-content:flex-end">
-        <van-button style="margin-left:10px;margin-right:20px;background:#D7D7D7;color:white">取消订单</van-button>
-        <van-button style="margin-left:10px;margin-right:20px;background:#EF0B25;color:white">立即付款</van-button>
-    </van-row>
+
+    <div v-for="(item1,key1) in OrderList" :key="key1">
+      <van-row>
+        <van-divider>{{item1.status}}</van-divider>
+        <!-- <van-checkbox-group v-model="OrderList"> -->
+          <!-- <div style="display:flex"> -->
+            <!-- <van-checkbox class="checkbox" name="a"></van-checkbox> -->
+            <van-card v-for="(item2,key2) in item1.order_items" :key="key2" class="van-card" :num="item2.quantity" :price="item2.price" :title="item2.name" :thumb="item2.photo"/>
+          <!-- </div> -->
+        <!-- </van-checkbox-group> -->
+      </van-row>
+      <van-row style="display:flex;justify-content:flex-end">
+        <p>总金额：</p>
+        <p style="margin-right:20px;color:#EE0A24">{{item1.total_amount}}</p>
+      </van-row>
+      <van-row style="display:flex;justify-content:flex-end">
+          <van-button style="margin-left:10px;margin-right:20px;background:#D7D7D7;color:white">取消订单</van-button>
+          <van-button style="margin-left:10px;margin-right:20px;background:#EF0B25;color:white">立即付款</van-button>
+      </van-row>
+    </div>
+
   </div>
 </template>
 
 <script>
-import { Card, Checkbox, CheckboxGroup, Divider, Button, Row, Col } from 'vant';
-
+import { Card, Checkbox, CheckboxGroup, Divider, Button } from 'vant';
+import {getOrder} from '@/api/Me.js';
 
 export default {
 
@@ -31,20 +37,27 @@ export default {
     [Checkbox.name]: Checkbox,
     [CheckboxGroup.name]: CheckboxGroup,
     [Divider.name]:Divider,
-    [Button.name]:Button,
-    [Row.name]:Row,
-    [Col.name]:Col
+    [Button.name]:Button
   },
 
   data(){
     return{
-      OrderList:[]
+      OrderList:[],
+      ConvertStatus:{0:'待确认',1:'已确认',2:'待付款',3:'已付款',4:'待发货',5:'已收货',6:'验货中',7:'已结束'}
     }
   },
 
-  methods: {},
+  methods: {
+    async getOrder(){
+      const response = await getOrder()
+      this.OrderList = response.data.orders
+      this.OrderList.forEach(item =>{item.status = this.ConvertStatus[item.status]})
+    }
+  },
 
-  created(){}
+  created(){
+    this.getOrder()
+  }
 }
 </script>
 

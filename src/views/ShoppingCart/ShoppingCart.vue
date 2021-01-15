@@ -9,7 +9,7 @@
 <script>
 import { Card, SubmitBar,NavBar } from 'vant';
 import ShoppingCartItem from '@/components/ShoppingCartItem.vue'
-import { getShoppingCartItem, getOrder } from '@/api/ShoppingCart'
+import { getShoppingCartItem, getCheckout } from '@/api/ShoppingCart'
 
 export default {
 
@@ -42,7 +42,7 @@ export default {
     async gettotalprice(){
       let totalprice = 0
       if (this.CartItemSelected.length !== 0){
-        const response = await getOrder(this.CartItemSelected)
+        const response = await getCheckout(this.CartItemSelected)
         const amount = response.data.list
         amount.forEach(item => {totalprice += item.total_amount})
       }
