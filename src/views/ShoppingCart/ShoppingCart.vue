@@ -1,13 +1,15 @@
 <template>
   <div>
-    <shopping-cart-item></shopping-cart-item>
-    <van-submit-bar style="position:fixed;bottom:50px" :price="3050" button-text="提交订单" />
+    <van-nav-bar title="购物车"/>
+    <shopping-cart-item :List="CartList" @NewList="NewList"></shopping-cart-item>
+    <van-submit-bar style="position:fixed;bottom:50px" :price="totalprice" button-text="提交订单" :disabled="CartItemSelected.length === 0" @submit="ConfirmOrder"/>
   </div>
 </template>
 
 <script>
-import { Card, SubmitBar } from 'vant';
+import { Card, SubmitBar,NavBar } from 'vant';
 import ShoppingCartItem from '@/components/ShoppingCartItem.vue'
+import { getShoppingCartItem, getOrder } from '@/api/ShoppingCart'
 
 export default {
 
@@ -16,23 +18,60 @@ export default {
   components:{
     [Card.name]: Card,
     [SubmitBar.name]:SubmitBar,
-    ['shopping-cart-item']:ShoppingCartItem
+    ['shopping-cart-item']:ShoppingCartItem,
+    [NavBar.name]:NavBar
   },
 
   data(){
     return{
-      ItemList:[]
+      CartList:[],
+      CartItemSelected:[],
+      totalprice:0
     }
   },
 
+  computed:{
+  },
+
   methods: {
+    async getShoppingCartItem(){
+      const response = await getShoppingCartItem()
+      this.CartList = response.data.cartitem
+    },
+
+    async gettotalprice(){
+      let totalprice = 0
+      if (this.CartItemSelected.length !== 0){
+        const response = await getOrder(this.CartItemSelected)
+        const amount = response.data.list
+        amount.forEach(item => {totalprice += item.total_amount})
+      }
+      this.totalprice = totalprice*100
+    },
+
     onClickLeft(){
       this.$router.go(-1)
+    },
+
+    ConfirmOrder(){
+      this.$router.push({name:'ConfirmOrder',query:{Order:JSON.stringify(this.CartItemSelected)}})
+    },
+
+    NewList(newlist){
+      this.CartItemSelected = newlist
+    }
+  },
+
+  watch:{
+    CartItemSelected:{
+      handler(){
+        this.gettotalprice()
+      }
     }
   },
 
   created(){
-    
+    this.getShoppingCartItem()
   }
 }
 </script>

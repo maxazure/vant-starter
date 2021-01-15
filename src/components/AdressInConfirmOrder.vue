@@ -5,19 +5,19 @@
         <van-cell clickable is-link center>
           <template #title>
             <van-row>
-              <vam-col>
+              <van-col>
                 张三
-              </vam-col>
-              <vam-col>
+              </van-col>
+              <van-col>
                 13000000000
-              </vam-col>
-              <vam-col style="background:#FF4444;color:white">
+              </van-col>
+              <van-col style="background:#FF4444;color:white">
                 默认
-              </vam-col>
+              </van-col>
             </van-row>
-            <vam-row>
+            <van-row>
               浙江省杭州市西湖区文三路 138 号东方通信大厦 7 楼 501 室
-            </vam-row>
+            </van-row>
           </template>
         </van-cell>
       </van-cell-group>
@@ -26,14 +26,12 @@
 </template>
 
 <script>
-import { Col, Row, RadioGroup, Radio, Cell, CellGroup }from 'vant'
+import { RadioGroup, Radio, Cell, CellGroup }from 'vant'
 
 export default {
   name:'AdressInConfirmOrder',
 
   components:{
-    [Col.name]:Col,
-    [Row.name]:Row,
     [RadioGroup.name]:RadioGroup,
     [Radio.name]:Radio,
     [Cell.name]:Cell,

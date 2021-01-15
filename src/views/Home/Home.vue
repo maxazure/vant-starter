@@ -11,45 +11,17 @@
     <van-divider class="divider">推荐商品</van-divider>
 
     <van-tabs v-model="active">
-      <van-tab title="男装">
+      <van-tab v-for="(value1,key1,index1) in productlist" :key="index1" :title="key1">
         <div class="pro-container">
           <product-list-item
-            :product="item"
-            v-for="item in list1"
-            :key="item.id"
-          />
-        </div>
-      </van-tab>
-      <van-tab title="女装">
-        <div class="pro-container">
-          <product-list-item
-            :product="item"
-            v-for="item in list2"
-            :key="item.id"
-          />
-        </div>
-      </van-tab>
-      <van-tab title="童装">
-        <div class="pro-container">
-          <product-list-item
-            :product="item"
-            v-for="item in list3"
-            :key="item.id"
-            priceColor="red"
-          />
-        </div>
-      </van-tab>
-      <van-tab title="羽绒服">
-        <div class="pro-container">
-          <product-list-item
-            :product="item"
-            v-for="item in list4"
-            :key="item.id"
-            priceColor="red"
+            v-for="(item2,key2) in value1"
+            :product="item2"
+            :key="key2"
           />
         </div>
       </van-tab>
     </van-tabs>
+
   </div>
 </template>
 
@@ -88,17 +60,14 @@ export default {
     ['icons-line-in-home']: IconsLineInHome
   },
   created() {
-    this.getProductList(1, 'list1')
-    this.getProductList(2, 'list2')
-    this.getProductList(3, 'list3')
-    this.getProductList(4, 'list4')
+    this.getProductList()
     this.getSwipes()
     this.getIconsLine()
   },
   methods: {
-    async getProductList(id, list) {
-      const response = await getTwoColProductList(id)
-      this[list] = response.data
+    async getProductList() {
+      const response = await getTwoColProductList()
+      this.productlist = response.data
     },
     async getSwipes() {
       const response = await getSwipesForHome()
@@ -118,10 +87,7 @@ export default {
     return {
       value: '',
       active: 2,
-      list1: [],
-      list2: [],
-      list3: [],
-      list4: [],
+      productlist: [],
       Swipes: [],
       IconsLine:[],
       search:''

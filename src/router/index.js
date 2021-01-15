@@ -46,7 +46,7 @@ const routes = [
       name:'Me',
       component: () => import('@/views/UserCenter/Me')
       },{
-      path: 'MyOrder/:params',
+      path: 'MyOrder',
       name:'MyOrder',
       component: () => import('@/views/UserCenter/MyOrder')
       },{
@@ -64,31 +64,31 @@ const routes = [
   },
 
   {
-    path: '/ConfirmOrder/:params',
+    path: '/ConfirmOrder',
     name:'ConfirmOrder',
     component: () => import('@/views/ShoppingCart/ConfirmOrder')
   },
 
   {
-    path: '/MyAddress/:params',
+    path: '/MyAddress',
     name:'MyAddress',
     component: () => import('@/views/UserCenter/MyAddress')
   },
 
   {
-    path: '/NewAddress/:params',
+    path: '/NewAddress',
     name:'NewAddress',
     component: () => import('@/views/UserCenter/NewAddress')
   },
 
   {
-    path: '/RevisePersonalInfo//:params',
+    path: '/RevisePersonalInfo',
     name:'RevisePersonalInfo',
     component: () => import('@/views/UserCenter/RevisePersonalInfo')
   },
 
   {
-    path: '/OrderSucceed/:params',
+    path: '/OrderSucceed',
     name:'OrderSucceed',
     component: () => import('@/views/ShoppingCart/OrderSucceed')
   }

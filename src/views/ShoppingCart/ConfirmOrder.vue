@@ -1,23 +1,20 @@
 <template>
   <div>
-    <van-nav-bar title="标题" left-text="返回" left-arrow @click-left="onClickLeft"/>
+    <van-nav-bar title="确认订单" left-text="返回" left-arrow @click-left="onClickLeft"/>
     <adress-in-confirm-order></adress-in-confirm-order>
-    <shopping-cart-item></shopping-cart-item>
-    <shopping-cart-item></shopping-cart-item>
-    <shopping-cart-item></shopping-cart-item>
-    <shopping-cart-item></shopping-cart-item>
-    <shopping-cart-item></shopping-cart-item>
-    <van-submit-bar :price="3050" button-text="立即付款" @submit="onSubmit" />
+    <shopping-cart-item :List="ItemList" :Radio="false"></shopping-cart-item>
+    <van-submit-bar :price="totalprice" button-text="确认提交" @submit="onSubmit" />
   </div>
 </template>
 
 <script>
 import { Card, SubmitBar,NavBar } from 'vant';
 
+import { getOrder } from '@/api/ShoppingCart'
+
 import ShoppingCartItem from '@/components/ShoppingCartItem.vue'
 import AdressInConfirmOrder from '@/components/AdressInConfirmOrder.vue'
 
-import {getProductListForHome} from '@/api/product'
 
 export default {
 
@@ -37,15 +34,33 @@ export default {
     }
   },
 
+  computed:{
+    totalprice(){
+      let totalprice = 0
+      this.ItemList.forEach(item => {
+        totalprice += item.total_amount
+      })
+      return totalprice*100
+    }
+  },
+
   methods: {
-    async getProductList(id){
-      const response = await getProductListForHome(id);
-      this.ItemList = response.data;
+    async getOrder(){
+      const response = await getOrder(JSON.parse(this.$route.query.Order))
+      this.ItemList = response.data.list
+    },
+
+    onClickLeft(){
+      this.$router.go(-1)
+    },
+
+    onSubmit(){
+      this.$router.push({name:'OrderSucceed'})
     }
   },
 
   created(){
-    this.getProductList(1)
+    this.getOrder()
   }
 }
 </script>

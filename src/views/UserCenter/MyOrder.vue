@@ -1,14 +1,15 @@
 <template>
   <div>
     <van-nav-bar :title="$route.params.params" left-text="返回" left-arrow @click-left="onClickLeft"/>
-    <van-tabs>
-      <van-tab title="待付款">
+    <!-- <van-tabs>
+      <van-tab title="选购单">
         <order-list></order-list>
       </van-tab>
-      <van-tab title="待收货">内容 2</van-tab>
-      <van-tab title="待发货">内容 3</van-tab>
-      <van-tab title="已完成">内容 4</van-tab>
-    </van-tabs>
+      <van-tab title="确认单">
+        <order-list></order-list>
+      </van-tab>
+    </van-tabs> -->
+    <order-list></order-list>
   </div>
 </template>
 
@@ -38,7 +39,7 @@ export default {
 
   methods:{
      onClickLeft(){
-      this.$router.go(-1)
+      this.$router.push({name:'Me'})
     }
   }
 }

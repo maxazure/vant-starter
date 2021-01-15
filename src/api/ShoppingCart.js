@@ -7,6 +7,13 @@ export function getShoppingCartItem() {
   })
 }
 
+export function cleanShoppingCartItem() {
+  return request({
+    url: '/currentusercart',
+    method: 'delete'
+  })
+}
+
 export function addShoppingCartItem(data) {
   return request({
     url: '/cartitems',
@@ -27,5 +34,13 @@ export function delShoppingCart(id) {
   return request({
     url: '/cartitems/'+id,
     method: 'delete'
+  })
+}
+
+export function getOrder(data) {
+  return request({
+    url: '/checkout',
+    method: 'post',
+    data
   })
 }

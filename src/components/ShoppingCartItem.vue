@@ -1,9 +1,10 @@
 <template>
   <div>
-    <van-checkbox-group v-model="CartListSelected">
-      <div style="display:flex" v-for="item in CartList" :key="item.id">
-        <van-checkbox class="checkbox" name="a"></van-checkbox>
-        <van-card class="van-card" :num="item.quantity" price="2.00" desc="描述信息" title="商品标题" thumb="https://img.yzcdn.cn/vant/ipad.jpeg"/>
+    <van-checkbox-group v-model="ItemsSelected" @change="ListChange">
+      <div style="display:flex" v-for="(item,key) in ItemList" :key="key">
+        <van-checkbox v-if="Radio" class="checkbox" :name="item.product_id"></van-checkbox>
+        <van-card :num="item.quantity" :price="item.price" :title="item.name" :thumb="item.photo">
+        </van-card>
       </div>
     </van-checkbox-group>
   </div>
@@ -11,7 +12,6 @@
 
 <script>
 import { Card, Checkbox, CheckboxGroup } from 'vant';
-import {getShoppingCartItem} from '@/api/ShoppingCart'
 
 export default {
 
@@ -23,23 +23,44 @@ export default {
     [CheckboxGroup.name]: CheckboxGroup
   },
 
+  props:{
+    List: Array,
+    Radio: {
+      type: Boolean,
+      default: true
+    }
+  },
+
   data(){
     return{
-      CartListSelected:[],
-      CartList:[]
+      ItemsSelected:[],
+      ItemList: this.List
+    }
+  },
+
+  watch:{
+    List:{
+      handler(val){
+        this.ItemList = val
+      }
     }
   },
 
   methods: {
-    async getShoppingCartItem(){
-      const response = await getShoppingCartItem()
-      this.CartList = response.data
+    ListChange(){
+      if (this.ItemsSelected){
+        let List = []
+        Object.values(this.ItemsSelected).forEach((item, key) => {
+          let newItem = {}
+          newItem["product_id"] = item
+          newItem["quantity"] = this.ItemList[key].quantity
+          List.push(newItem)
+          }
+        )        
+        this.$emit('NewList', List)
+      }
     }
-  },
-
-  created(){
-    this.getShoppingCartItem()
-  }
+  }   
 }
 </script>
 
@@ -51,7 +72,7 @@ export default {
 
 .van-card{
   float: right;
-  width: 94%;
+  width: 100%;
   align-self: center;
 }
 

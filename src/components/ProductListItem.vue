@@ -32,7 +32,7 @@ export default {
 
   methods: {
     click(){
-      this.$router.push({name:'ProductDetail'})
+      this.$router.push({name:'ProductDetail',query:{product_id:this.product.product_id}})
     }
   }
 }
