@@ -59,11 +59,13 @@ export default {
     ['product-list-item']: ProductListItem,
     ['icons-line-in-home']: IconsLineInHome
   },
+
   created() {
     this.getProductList()
     this.getSwipes()
     this.getIconsLine()
   },
+
   methods: {
     async getProductList() {
       const response = await getTwoColProductList()

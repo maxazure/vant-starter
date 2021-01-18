@@ -1,11 +1,11 @@
 <template>
   <van-grid>
-      <van-grid-item v-for="item in IconsLine" :key="item.id" :url="item.link">
+      <van-grid-item v-for="(item,key) in IconsLine" :key="key" :url="item.link">
         <template  #icon >
-          <van-icon name="gem-o" color="red" />
+          <van-icon :name="item.icon"/>
         </template>
         <template  #text >
-          <span>会员</span>
+          <span>{{item.title}}</span>
         </template>
       </van-grid-item>
     </van-grid>
@@ -16,11 +16,13 @@ import { Grid, GridItem, Icon } from 'vant'
 
 export default {
   name:'IconsLineInHome',
+
   components:{
     [Grid.name]:Grid,
     [GridItem.name]:GridItem,
     [Icon.name]:Icon
   },
+
   props:['IconsLine']
 }
 </script>
