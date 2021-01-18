@@ -50,8 +50,10 @@ export default {
   methods: {
     async getOrder(){
       const response = await getOrder()
-      this.OrderList = response.data.orders
-      this.OrderList.forEach(item =>{item.status = this.ConvertStatus[item.status]})
+      if (response.msg !== "Current user doesn't have any orders "){
+        this.OrderList = response.data.orders
+        this.OrderList.forEach(item =>{item.status = this.ConvertStatus[item.status]})
+      }
     }
   },
 
