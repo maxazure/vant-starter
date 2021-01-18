@@ -37,7 +37,7 @@ export function delShoppingCart(id) {
   })
 }
 
-export function getOrder(data) {
+export function getCheckout(data) {
   return request({
     url: '/checkout',
     method: 'post',

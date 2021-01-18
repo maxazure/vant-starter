@@ -10,7 +10,7 @@
 <script>
 import { Card, SubmitBar,NavBar } from 'vant';
 
-import { getOrder } from '@/api/ShoppingCart'
+import { getCheckout } from '@/api/ShoppingCart'
 
 import ShoppingCartItem from '@/components/ShoppingCartItem.vue'
 import AdressInConfirmOrder from '@/components/AdressInConfirmOrder.vue'
@@ -46,7 +46,7 @@ export default {
 
   methods: {
     async getOrder(){
-      const response = await getOrder(JSON.parse(this.$route.query.Order))
+      const response = await getCheckout(JSON.parse(this.$route.query.Order))
       this.ItemList = response.data.list
     },
 
