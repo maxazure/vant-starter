@@ -1,14 +1,15 @@
 <template>
   <div class="pro-i" @click="click">
 
-    <van-image :src="product.photo" width="100%"/>
+    <van-image :src="product.photo" width="100%">
+    </van-image>
     
     <div class="title">{{product.name}}</div>
     <div class="desc">{{product.intro}}</div>
     <div class="price-container">
-      <div v-if="!product.market_price" class="price" :style="priceStyle">￥{{product.price}}</div>
-      <div v-else class="market_price" :style="priceStyle">￥{{product.market_price}}</div>
-      <div class="priceoff-box">限时折扣</div>
+      <div v-if="product.price" class="price_off" :style="priceStyle">￥{{product.price}}</div>
+      <div :class="product.price? 'market_price':'price'" :style="priceStyle">￥{{product.market_price}}</div>
+      <div v-if="product.price" class="priceoff-box">限时折扣</div>
     </div>
   </div>
 </template>
@@ -24,7 +25,7 @@ export default {
 
   computed: {
     priceStyle () {
-      return 'color: ' + this.priceColor;
+      return 'color:' + this.priceColor;
     }
   },
   name: 'product-list-item',
@@ -43,40 +44,52 @@ export default {
   width:50%;
 }
 
-.pro-i .title, .pro-i .desc, .pro-i .price{
+ .title,  .desc,  .price-container{
     padding: 0 6px;
 }
 
-.pro-i .title{
+.title{
   font-size: 14px;
+  line-height: 150%;
   color: #333;
   text-decoration: none;
 }
 
-.pro-i .desc{
+.desc{
   font-size: 12px;
+  line-height: 200%;
   color: #999;
 }
 
-.pro-i .price-container{
-  height: 20px;
+.price-container{
+  clear: both;
 }
 
-.pro-i .price{
-  line-height: 20px;
+.price_off{
+  line-height: 30px;
+  font-size: 16px;
+  color: #FF6010;
+  font-weight: bold;
   float: left;
+}
+
+.price{
+  line-height: 30px;
   font-size: 16px;
   font-weight: bold;
-}
-
-.pro-i .market_price{
-  line-height: 20px;
   float: left;
-  font-size: 16px;
-  font-weight: bold;
 }
 
-.pro-i .priceoff-box{
+.market_price{
+  text-decoration: line-through;
+  margin-left:3px;
+  line-height: 30px;
+  font-size: 12px;
+  color:#929292;
+  float: left;
+}
+
+.priceoff-box{
   float: right;
   margin-right: 10px;
   width: 60px;

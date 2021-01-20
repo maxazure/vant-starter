@@ -58,6 +58,12 @@ const routes = [
   },
 
   {
+    path: '/ProductCategoryInner',
+    name:'ProductCategoryInner',
+    component:  () => import('@/views/ProductCategory/ProductCategoryInner')
+  },
+
+  {
     path: '/ProductDetail',
     name:'ProductDetail',
     component:  () => import('@/views/ProductCategory/ProductDetail')

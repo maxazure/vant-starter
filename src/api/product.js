@@ -7,6 +7,13 @@ export function getTwoColProductList() {
   })
 }
 
+export function getProductListById(id) {
+  return request({
+    url: '/categories/' + id,
+    method: 'get'
+  })
+}
+
 export function getProductInfo(id) {
   return request({
     url: '/products/'+id,
