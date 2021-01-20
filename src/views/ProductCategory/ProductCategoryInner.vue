@@ -1,7 +1,7 @@
 <template>
   <div>
     <van-nav-bar title="商品列表" left-text="返回" left-arrow @click-left="onClickLeft"/>
-    <van-divider>{{this.$route.query.CategoryName}}</van-divider>
+    <van-divider :style="{color: '#333333', borderColor:'#D7D7D7', fontWeight: 'bold'}">{{this.$route.query.CategoryName}}</van-divider>
     <div class="list-container">
       <product-list-item v-for="(item,key) in ProductList" :key="key" :product="item"/>
     </div>
@@ -15,6 +15,8 @@ import ProductListItem from '@/components/ProductListItem.vue'
 import { getProductListById } from '@/api/product.js'
 
 export default {
+  name:'ProductCategoryInner',
+
   components:{
     [NavBar.name]:NavBar,
     [Divider.name]:Divider,
