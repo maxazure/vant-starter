@@ -1,7 +1,7 @@
 <template>
   <div class="pro-i" @click="click">
 
-    <van-image :src="product.photo" width="100%" height="300" />
+    <van-image :src="product.photo" width="100%"/>
     
     <div class="title">{{product.name}}</div>
     <div class="desc">{{product.intro}}</div>
@@ -41,11 +41,12 @@ export default {
 <style scoped>
 .pro-i{
   width:50%;
-  line-height: 150%;
 }
+
 .pro-i .title, .pro-i .desc, .pro-i .price{
     padding: 0 6px;
 }
+
 .pro-i .title{
   font-size: 14px;
   color: #333;
