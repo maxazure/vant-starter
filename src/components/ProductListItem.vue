@@ -7,8 +7,8 @@
     <div class="title">{{product.name}}</div>
     <div class="desc">{{product.intro}}</div>
     <div class="price-container">
-      <div v-if="product.price" class="price_off" :style="priceStyle">￥{{product.price}}</div>
-      <div :class="product.price? 'market_price':'price'" :style="priceStyle">￥{{product.market_price}}</div>
+      <div v-if="product.price" class="price-off" :style="priceStyle">￥{{product.price}}</div>
+      <div :class="product.price? 'market-price':'price'" :style="priceStyle">￥{{product.market_price}}</div>
       <div v-if="product.price" class="priceoff-box">限时折扣</div>
     </div>
   </div>
@@ -65,7 +65,7 @@ export default {
   clear: both;
 }
 
-.price_off{
+.price-off{
   line-height: 30px;
   font-size: 16px;
   color: #FF6010;
@@ -80,7 +80,7 @@ export default {
   float: left;
 }
 
-.market_price{
+.market-price{
   text-decoration: line-through;
   margin-left:3px;
   line-height: 30px;
@@ -95,7 +95,7 @@ export default {
   width: 60px;
   height: 20px;
   background: #FFECE3;
-  font-size: 5px;
+  font-size: 12px;
   color: #FF6010;
   line-height: 20px;
   text-align: center;
