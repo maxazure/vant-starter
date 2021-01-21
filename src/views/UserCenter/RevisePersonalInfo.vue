@@ -4,7 +4,7 @@
     <van-cell-group>
       <van-cell title="头像" :value="content.photo" clickable is-link center/>
       <van-cell title="昵称" :value="content.username" clickable is-link center/>
-      <van-cell title="性别" :value="content.username" clickable is-link center/>
+      <van-cell title="性别" :value="content.gender" clickable is-link center/>
       <van-cell title="生日" :value="content.birthday" clickable is-link center/>
       <van-cell title="所在地" :value="content.region" clickable is-link center/>
       <van-cell title="简介" :value="content.intro" clickable is-link center/>

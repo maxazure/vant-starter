@@ -5,12 +5,17 @@
     <div class="list-container">
       <product-list-item v-for="(item,key) in ProductList" :key="key" :product="item"/>
     </div>
+    <div v-show="FoldNavButton" class="NavButton" @click="FoldNavButton = !FoldNavButton">导航</div>
+    <div v-show="!FoldNavButton" class="NavButton-Unfold">
+      <div v-for="(item, key) in NavButtonList" :key="key" class="NavButton-Unfold__Element">{{item}}</div>
+      <div class="NavButton-Unfold__Element" @click="FoldNavButton = !FoldNavButton">返回</div>
+    </div>
 
   </div>
 </template>
 
 <script>
-import { NavBar,Divider} from 'vant'
+import { NavBar, Divider } from 'vant'
 import ProductListItem from '@/components/ProductListItem.vue'
 import { getProductListById } from '@/api/product.js'
 
@@ -25,7 +30,9 @@ export default {
 
   data(){
     return{
-      ProductList:[]
+      ProductList:[],
+      NavButtonList:['首页','购物车','心愿单'],
+      FoldNavButton: true
     }
   },
   
@@ -52,6 +59,46 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+
+.NavButton{
+  position: fixed;
+  right: 10px;
+  bottom: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  border: black solid 2px;
+  opacity: 0.7;
+  background-color: rgb(255, 255, 255);
+  line-height: 40px;
+  text-align: center;
+  color: black;
+  font-weight: bolder;
+  font-size: 12px;
+}
+
+.NavButton-Unfold{
+  position: fixed;
+  right: 10px;
+  bottom: 20px;
+}
+
+.NavButton-Unfold__Element{
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  border: black solid 2px;
+  opacity: 0.7;
+  background-color: rgb(255, 255, 255);
+
+  line-height: 40px;
+  text-align: center;
+  color: black;
+  font-weight: bolder;
+  font-size: 12px;
+
+  margin-top: 10px;
 }
 
 </style>
