@@ -1,6 +1,6 @@
 <template>
   <div style="background-color:#797979">
-    <van-nav-bar :title="$route.params.params" left-text="返回" left-arrow @click-left="onClickLeft"/>
+    <van-nav-bar :title="$route.query.page_name" left-text="返回" left-arrow @click-left="onClickLeft"/>
     <van-cell-group>
       <van-cell title="头像" :value="content.photo" clickable is-link center/>
       <van-cell title="昵称" :value="content.username" clickable is-link center/>

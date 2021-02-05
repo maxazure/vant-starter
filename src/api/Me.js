@@ -7,6 +7,13 @@ export function getAddresses() {
   })
 }
 
+export function getDefaultAddress() {
+  return request({
+    url: '/userdefaultaddress',
+    method: 'get'
+  })
+}
+
 export function addAddresses(data) {
   return request({
     url: '/addresses',

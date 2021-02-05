@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-nav-bar :title="$route.params.params" left-text="返回" left-arrow @click-left="onClickLeft"/>
+    <van-nav-bar :title="$route.query.page_name" left-text="返回" left-arrow @click-left="onClickLeft"/>
     <van-address-list v-model="chosenAddressId" :list="AddressList" default-tag-text="默认" @add="onAdd" @edit="onEdit"/>
   </div>
 </template>
@@ -39,6 +39,7 @@ export default {
     async getAddresses(){
       const response = await getAddresses()
       this.AddressList = response.data.addresses
+      this.AddressList.forEach(item => {item.address = `${item.addressDetail} ${item.county} ${item.city} ${item.province}`})
     }
   },
 

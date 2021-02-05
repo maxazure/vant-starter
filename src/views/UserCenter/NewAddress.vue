@@ -60,14 +60,8 @@ export default {
       this.$router.go(-1)
     },
 
-    async onSave(content) {
-      let address = {}
-      address["name"] = content.name
-      address["tel"] = content.tel
-      address["isDefault"] = content.isDefault
-      address["address"] = `${content.addressDetail} ${content.country} ${content.city} ${content.province} ${content.postalCode}`
-      
-      await addAddresses(address)
+    async onSave(content) {    
+      await addAddresses(content)
 
       this.$router.push({name:"MyAddress"})
     },

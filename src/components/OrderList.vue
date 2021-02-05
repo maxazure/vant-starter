@@ -1,15 +1,10 @@
 <template>
   <div>
-
+    <!-- <div v-if="OrderList = []">当前用户没有任何订单</div> -->
     <div v-for="(item1,key1) in OrderList" :key="key1">
       <van-row>
         <van-divider>{{item1.status}}</van-divider>
-        <!-- <van-checkbox-group v-model="OrderList"> -->
-          <!-- <div style="display:flex"> -->
-            <!-- <van-checkbox class="checkbox" name="a"></van-checkbox> -->
-            <van-card v-for="(item2,key2) in item1.order_items" :key="key2" class="van-card" :num="item2.quantity" :price="item2.price" :title="item2.name" :thumb="item2.photo"/>
-          <!-- </div> -->
-        <!-- </van-checkbox-group> -->
+        <van-card v-for="(item2,key2) in item1.order_items" :key="key2" class="van-card" :num="item2.quantity" :price="item2.price" :title="item2.name" :thumb="item2.photo"/>
       </van-row>
       <van-row style="display:flex;justify-content:flex-end">
         <p>总金额：</p>

@@ -6,17 +6,17 @@
           <template #title>
             <van-row>
               <van-col>
-                张三
+                {{DefaultAddress.name}}
               </van-col>
               <van-col>
-                13000000000
+                {{DefaultAddress.tel}}
               </van-col>
               <van-col style="background:#FF4444;color:white">
                 默认
               </van-col>
             </van-row>
             <van-row>
-              浙江省杭州市西湖区文三路 138 号东方通信大厦 7 楼 501 室
+              {{`${DefaultAddress.addressDetail} ${DefaultAddress.county} ${DefaultAddress.city} ${DefaultAddress.province}`}}
             </van-row>
           </template>
         </van-cell>
@@ -27,6 +27,8 @@
 
 <script>
 import { RadioGroup, Radio, Cell, CellGroup }from 'vant'
+import { getDefaultAddress } from '@/api/Me'
+
 
 export default {
   name:'AdressInConfirmOrder',
@@ -40,11 +42,21 @@ export default {
 
   data(){
     return{
-      radio:''
+      radio:'',
+      DefaultAddress:{}
     }
   },
 
-  methods:{}
+  methods:{
+    async getDefaultAddress(){
+      const response = await getDefaultAddress()
+      this.DefaultAddress = response.data.default_address[0]
+    }
+  },
+
+  created(){
+    this.getDefaultAddress()
+  }
 }
 </script>
 

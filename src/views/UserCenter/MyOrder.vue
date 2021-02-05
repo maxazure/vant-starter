@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-nav-bar :title="$route.params.params" left-text="返回" left-arrow @click-left="onClickLeft"/>
+    <van-nav-bar :title="$route.query.page_name" left-text="返回" left-arrow @click-left="onClickLeft"/>
     <!-- <van-tabs>
       <van-tab title="选购单">
         <order-list></order-list>
@@ -33,7 +33,6 @@ export default {
 
   data(){
     return{
-      title:[]
     }
   },
 
