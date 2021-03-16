@@ -40,7 +40,7 @@ export default {
   methods: {
     async getShoppingCartItem(){
       const response = await getShoppingCartItem()
-      this.CartList = response.data.cartitem
+      this.CartList = response.data
       console.log(this.CartList);
     },
 

@@ -11,14 +11,8 @@
     <van-divider class="divider">推荐商品</van-divider>
 
     <van-tabs v-model="active">
-      <van-tab v-for="(value1,key1,index1) in productlist" :key="index1" :title="key1">
-        <div class="pro-container">
-          <product-list-item
-            v-for="(item2,key2) in value1"
-            :product="item2"
-            :key="key2"
-          />
-        </div>
+      <van-tab v-for="(value,key) in HomeTab" :key="key" :title="value">
+        <product-list-item :ProductList="ProductList" @pulldown="pulldown"/>
       </van-tab>
     </van-tabs>
 
@@ -40,8 +34,8 @@ import {
   Divider,
    Image as VanImage
 } from 'vant'
-import { getTwoColProductList } from '@/api/product'
-import { getSwipesForHome, getIconsLine } from '@/api/home'
+import { getHomepageList } from '@/api/home'
+import { getProductListWithPagination }  from '@/api/product'
 
 export default {
   name: 'Home',
@@ -61,24 +55,28 @@ export default {
   },
 
   created() {
-    this.getProductList()
-    this.getSwipes()
-    this.getIconsLine()
+    this.getHomepageList()
   },
 
   methods: {
-    async getProductList() {
-      const response = await getTwoColProductList()
-      this.productlist = response.data
-    },
-    async getSwipes() {
-      const response = await getSwipesForHome()
-      this.Swipes = response.data
+    async getHomepageList(){
+      const response = await getHomepageList()
+      this.Swipes = response.data.swipes
+      this.IconsLine = response.data.buttons
+      this.HomeTab = response.data.tabs
+      this.getProductListWithPagination()
     },
 
-    async getIconsLine(){
-      const response = await getIconsLine()
-      this.IconsLine = response.data
+    async getProductListWithPagination(){
+      for (let x in this.HomeTab){
+        this.Pagination[this.HomeTab[x]] = {"currentpage": 1,"pagesize": 20}
+        this.ProductList[this.HomeTab[x]] = await getProductListWithPagination('man',JSON.stringify(this.Pagination[this.HomeTab[x]]))
+        console.log(this.ProductList[this.HomeTab[x]]);
+      }
+    },
+
+    pulldown(currentpage){
+      console.log(currentpage);
     },
 
     Search(){
@@ -89,9 +87,11 @@ export default {
     return {
       value: '',
       active: 2,
-      productlist: [],
+      ProductList: {},
+      Pagination:{},
       Swipes: [],
       IconsLine:[],
+      HomeTab:{},
       search:''
     }
   }
@@ -101,11 +101,7 @@ export default {
 .my-swipe .van-swipe-item {
   height: 150px;
 }
-.pro-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
+
 .divider {
   color: #333333;
   font-weight: bold;

@@ -13,3 +13,17 @@ export function getIconsLine() {
     method: 'get'
   })
 }
+
+export function getHomeTab() {
+  return request({
+    url: '/producttablist',
+    method: 'get'
+  })
+}
+
+export function getHomepageList() {
+  return request({
+    url: '/homepagelist',
+    method: 'get'
+  })
+}

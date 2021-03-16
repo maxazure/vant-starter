@@ -1,11 +1,11 @@
-import axios from 'axios'
-import {
-  Toast
-} from 'vant'
 import store from '@/store'
 import {
   getToken
 } from '@/utils/auth'
+import axios from 'axios'
+import {
+  Toast
+} from 'vant'
 
 // create an axios instance
 const service = axios.create({

@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function getTwoColProductList() {
   return request({
-    url: '/subproductlist',
+    url: '/homeproductlist',
     method: 'get'
   })
 }
@@ -11,6 +11,14 @@ export function getProductListById(id) {
   return request({
     url: '/categories/' + id,
     method: 'get'
+  })
+}
+
+export function getProductListWithPagination(Name,data) {
+  return request({
+    url: '/homeproductlist?product_type=' + Name,
+    method: 'post',
+    data
   })
 }
 

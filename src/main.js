@@ -6,10 +6,14 @@ import router from '@/router'
 import store from '@/store'
 import moment from 'moment'
 import 'normalize.css'
-import { Col, Row } from 'vant'
+import { Col, Lazyload, Row } from 'vant'
 import Vue from 'vue'
 
 Vue.use(Col).use(Row);
+
+Vue.use(Lazyload, {
+  lazyComponent: true,
+});
 
 Vue.config.productionTip = false
 

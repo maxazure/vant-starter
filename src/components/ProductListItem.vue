@@ -1,26 +1,41 @@
 <template>
-  <div class="pro-i" @click="click">
+  <div>
 
-    <van-image :src="product.photo" width="100%">
-    </van-image>
-    
-    <div class="title">{{product.name}}</div>
-    <div class="desc">{{product.intro}}</div>
-    <div class="price-container">
-      <div v-if="product.price" class="price-off" :style="priceStyle">￥{{product.price}}</div>
-      <div :class="product.price? 'market-price':'price'" :style="priceStyle">￥{{product.market_price}}</div>
-      <div v-if="product.price" class="priceoff-box">限时折扣</div>
-    </div>
+    <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad" class="two-columns">
+
+      <div v-for="(item,key) in ProductList" :key="key" style="width:50%" @click="click(item.id)">
+        <van-image :src="item.photo"></van-image>
+        
+        <div class="title">{{item.name}}</div>
+        <div class="desc">{{item.intro}}</div>
+        <div class="price-container">
+          <div v-if="item.price" class="price-off" :style="priceStyle">￥{{item.price}}</div>
+          <div :class="item.price? 'market-price':'price'" :style="priceStyle">￥{{item.market_price}}</div>
+          <div v-if="item.price" class="priceoff-box">限时折扣</div>
+        </div>
+      </div>
+
+    </van-list>
+
   </div>
 </template>
 
 <script>
-import { Image as VanImage, Button } from 'vant';
+import { Image as VanImage, Button, List } from 'vant';
 
 export default {
   components:{
     [Button.name]: Button,
     [VanImage.name]: VanImage,
+    [List.name]:List
+  },
+
+  data(){
+    return{
+      loading: false,
+      finished: false,
+      currentpage: 0
+    }
   },
 
   computed: {
@@ -29,22 +44,30 @@ export default {
     }
   },
   name: 'product-list-item',
-  props: ["product", "imgSize", "priceColor"],
+  props: ["ProductList", "imgSize", "priceColor"],
 
   methods: {
-    click(){
-      this.$router.push({name:'ProductDetail',query:{product_id:this.product.product_id}})
+    click(product_id){
+      this.$router.push({name:'ProductDetail',query:{product_id:product_id}})
+    },
+
+    onLoad(){0
+      this.currentpage += 1
+      this.$emit('pulldown',this.currentpage)
+      this.loading = false;
     }
   }
 }
 </script>
 
 <style scoped>
-.pro-i{
-  width:50%;
+.two-columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
- .title,  .desc,  .price-container{
+.title,  .desc,  .price-container{
     padding: 0 6px;
 }
 
