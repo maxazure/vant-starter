@@ -1,17 +1,44 @@
 <template>
-  <div style="display:flex;flex-direction:column">
-    <div style="margin-top:50px;margin-left:15px;font-size:25px">密码登录</div>
-    <van-field style="margin-top:50px" v-model="value.username" type="tel" placeholder="请输入手机号码">
-      <template #label>
-        {{prefix}}<van-icon @click="showpicker = !showpicker" style="display:inline-block;vertical-align:middle" name="arrow-down"/>
-       </template>
-    </van-field>
-    <van-field v-model="value.password" label="密码" placeholder="请输入手机号码" />
-    <van-button style="width:80%;margin-top:30px;align-self:center;" type="info" @click="Login">登录</van-button>
-    <div style="width:80%;align-self:center;margin-top:20px;color:#1989fa;display:flex;justify-content:space-between">
-      <div>手机快捷登录</div>
-      <div @click="LostPassword">忘记密码？</div>
-    </div>
+  <div>
+    <van-row style="margin-top:4.28rem;" type="flex" justify="center">
+      <van-col span="18">
+        <div style="font-size:28px">密码登录</div>
+      </van-col>
+    </van-row>
+    <van-row style="margin-top:4.42rem" type="flex" justify="center">
+      <van-col span="18">
+        <van-field style="padding:1%;font-size:16px" v-model="value.username" type="tel" placeholder="请输入手机号码">
+          <template #label>
+            {{prefix}}<van-icon @click="showpicker = !showpicker" style="display:inline-block;vertical-align:middle" name="arrow-down"/>
+          </template>
+        </van-field>
+      </van-col>
+    </van-row>
+    <van-row style="margin-top:1.78rem;" type="flex" justify="center">
+      <van-col span="18">
+        <van-field style="padding:1%;font-size:16px" v-model="value.password" label="密码" placeholder="请输入密码" />
+      </van-col>
+    </van-row>
+    <van-row style="margin-top:3.35rem" type="flex" justify="center">
+      <van-col span="18">
+        <van-button style="width:100%;" type="info" @click="Login">登录</van-button>
+      </van-col>
+    </van-row>
+    <van-row style="margin-top:1.21rem" type="flex" justify="center">
+      <van-col span="18">
+        <div style="color:#1989fa;display:flex;justify-content:space-between">
+          <div>手机快捷登录</div>
+          <div @click="LostPassword">忘记密码？</div>
+        </div>
+      </van-col>
+    </van-row>
+    <van-row style="margin-top:4.07rem" type="flex" justify="center">
+      <van-col span="18">
+        <div style="color:#1989fa;display:flex;justify-content:center">
+          <div>新用户注册</div>
+        </div>
+      </van-col>
+    </van-row>
     <van-popup  position="bottom" style="height:50%" round v-model="showpicker">
       <van-picker :columns="columns" @change='pickerselected'/>
     </van-popup>
