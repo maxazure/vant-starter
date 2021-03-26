@@ -33,7 +33,7 @@
         <van-button style="width:100%;" type="info" @click="Register">同意协议并注册</van-button>
       </van-col>
     </van-row>
-    <van-row style="margin-top:1.42rem" type="flex" justify="center">
+    <van-row style="margin-top:0.71rem" type="flex" justify="center">
       <van-col span="18">
         <van-button style="width:100%;" type="info" plain @click="toLogin">已有账号立即登陆</van-button>
       </van-col>

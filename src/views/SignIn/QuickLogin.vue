@@ -2,7 +2,7 @@
   <div>
     <van-row style="margin-top:4.28rem;" type="flex" justify="center">
       <van-col span="18">
-        <div style="font-size:28px">密码登录</div>
+        <div style="font-size:28px">手机快捷登录</div>
       </van-col>
     </van-row>
     <van-row style="margin-top:4.42rem" type="flex" justify="center">
@@ -14,9 +14,13 @@
         </van-field>
       </van-col>
     </van-row>
-    <van-row style="margin-top:1.78rem;" type="flex" justify="center">
+    <van-row style="margin-top:1.5rem" type="flex" justify="center">
       <van-col span="18">
-        <van-field style="padding:1%;font-size:16px" v-model="value.password" label="密码" placeholder="请输入密码" />
+        <van-field style="padding:1%;font-size:16px" v-model="value.verificationcode" center clearable label="验证码" placeholder="请输入短信验证码">
+          <template #button>
+            <van-button size="mini" type="info" plain>发送验证码</van-button>
+          </template>
+        </van-field>
       </van-col>
     </van-row>
     <van-row style="margin-top:3.35rem" type="flex" justify="center">
@@ -24,15 +28,12 @@
         <van-button style="width:100%;" type="info" @click="Login">登录</van-button>
       </van-col>
     </van-row>
-    <van-row style="margin-top:1.21rem" type="flex" justify="center">
+    <van-row style="margin-top:0.71rem" type="flex" justify="center">
       <van-col span="18">
-        <div style="color:#1989fa;display:flex;justify-content:space-between">
-          <div @click="QuickLogin">手机快捷登录</div>
-          <div @click="LostPassword">忘记密码？</div>
-        </div>
+        <van-button style="width:100%;" type="info" plain @click="toLogin">账号密码登录</van-button>
       </van-col>
     </van-row>
-    <van-row style="margin-top:4.45rem" type="flex" justify="center">
+    <van-row style="margin-top:3.28rem" type="flex" justify="center">
       <van-col span="18">
         <div style="color:#1989fa;display:flex;justify-content:center">
           <div @click="Register">新用户注册</div>
@@ -49,7 +50,7 @@
 import { Field, Button, Icon, Picker, Popup } from 'vant'
 
 export default {
-  name:'Login',
+  name:'QuickLogin',
   components:{
     [Field.name]:Field,
     [Button.name]:Button,
@@ -70,10 +71,6 @@ export default {
   methods:{
     pickerselected(picker,value){
       this.prefix = value
-    },
-
-    QuickLogin(){
-      this.$router.push({name:'QuickLogin'})
     },
 
     LostPassword(){

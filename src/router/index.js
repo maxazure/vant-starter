@@ -33,6 +33,12 @@ const routes = [
   },
 
   {
+    path:'/QuickLogin',
+    name:'QuickLogin',
+    component: () => import('@/views/SignIn/QuickLogin'),
+  },
+
+  {
     path: '/',
     component: Layout,
     children: [{
