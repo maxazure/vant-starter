@@ -27,6 +27,12 @@ const routes = [
   },
 
   {
+    path:'/RegisterSucceed',
+    name:'RegisterSucceed',
+    component: () => import('@/views/SignIn/RegisterSucceed'),
+  },
+
+  {
     path: '/',
     component: Layout,
     children: [{

@@ -16,7 +16,7 @@
     </van-row>
     <van-row style="margin-top:1.5rem" type="flex" justify="center">
       <van-col span="18">
-        <van-field style="padding:1%;font-size:16px" v-model="value" center clearable label="验证码" placeholder="请输入短信验证码">
+        <van-field style="padding:1%;font-size:16px" v-model="value.verificationcode" center clearable label="验证码" placeholder="请输入短信验证码">
           <template #button>
             <van-button size="mini" type="info" plain>发送验证码</van-button>
           </template>
@@ -25,17 +25,17 @@
     </van-row>
     <van-row style="margin-top:1.5rem" type="flex" justify="center">
       <van-col span="18">
-        <van-field style="padding:1%;font-size:16px" v-model="value" label="新密码" placeholder="请输入密码" />
+        <van-field style="padding:1%;font-size:16px" v-model="value.newpassword" label="新密码" placeholder="请输入密码" />
       </van-col>
     </van-row>
     <van-row style="margin-top:1.5rem" type="flex" justify="center">
       <van-col span="18">
-        <van-field style="padding:1%;font-size:16px" v-model="value" label="确认密码" placeholder="请再次确认密码" />
+        <van-field style="padding:1%;font-size:16px" v-model="value.confirmpassword" label="确认密码" placeholder="请再次确认密码" />
       </van-col>
     </van-row>
     <van-row style="margin-top:1.92rem" type="flex" justify="center">
       <van-col span="18">
-        <van-button style="width:100%;align-self:center;" type="info" @click="submit">确定</van-button>
+        <van-button style="width:100%;align-self:center;" type="info" @click="submit">登录</van-button>
       </van-col>
     </van-row>
      <van-popup  position="bottom" style="height:50%" round v-model="showpicker">
@@ -57,7 +57,7 @@ export default {
   },
   data(){
     return{
-      value:'',
+      value:{},
       prefix:'+86',
       showpicker: false,
       columns: ['+87', '+88', '+96', '+32', '+34', '+54', '+46', '+43']

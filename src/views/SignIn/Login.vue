@@ -35,7 +35,7 @@
     <van-row style="margin-top:4.07rem" type="flex" justify="center">
       <van-col span="18">
         <div style="color:#1989fa;display:flex;justify-content:center">
-          <div>新用户注册</div>
+          <div @click="Register">新用户注册</div>
         </div>
       </van-col>
     </van-row>
@@ -74,6 +74,10 @@ export default {
 
     LostPassword(){
       this.$router.push({name:'LostPassword'})
+    },
+
+    Register(){
+      this.$router.push({name:'Register'})
     },
 
     async Login(){

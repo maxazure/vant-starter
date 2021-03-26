@@ -7,7 +7,7 @@ import { getToken } from './utils/auth'
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
-const whiteList = ['/Login','/LostPassword','/Register'] // no redirect whitelist
+const whiteList = ['/Login','/LostPassword','/Register','/RegisterSucceed'] // no redirect whitelist
 
 router.beforeEach(async(to, from, next) => {
   // start progress bar
