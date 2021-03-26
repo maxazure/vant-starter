@@ -73,8 +73,8 @@ export default {
       this.prefix = value
     },
 
-    LostPassword(){
-      this.$router.push({name:'LostPassword'})
+    toLogin(){
+      this.$router.push({name:'Login'})
     },
 
     Register(){
