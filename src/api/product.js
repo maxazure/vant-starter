@@ -14,9 +14,9 @@ export function getProductListById(id) {
   })
 }
 
-export function getProductListWithPagination(Name,data) {
+export function getProductListWithPagination(data) {
   return request({
-    url: '/homeproductlist?product_type=' + Name,
+    url: '/homeproductlist',
     method: 'post',
     data
   })
