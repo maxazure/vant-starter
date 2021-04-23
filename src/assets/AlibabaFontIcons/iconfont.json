@@ -1,0 +1,23 @@
+{
+  "id": "2498488",
+  "name": "微信小商城",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "11488159",
+      "name": "viewgallery",
+      "font_class": "viewgallery",
+      "unicode": "e76c",
+      "unicode_decimal": 59244
+    },
+    {
+      "icon_id": "11488167",
+      "name": "viewlist",
+      "font_class": "viewlist",
+      "unicode": "e76d",
+      "unicode_decimal": 59245
+    }
+  ]
+}

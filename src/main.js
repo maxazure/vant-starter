@@ -1,4 +1,5 @@
 import App from '@/App.vue'
+import "@/assets/AlibabaFontIcons/iconfont.css"
 import '@/icons' // icon
 // import '@/permission' // permission control
 import '@/permission'
