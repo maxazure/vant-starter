@@ -42,29 +42,44 @@ const routes = [
     path: '/',
     component: Layout,
     children: [{
-      path: 'Home',
-      name: 'Home',
-      component: Home
-      },{ 
-      path: 'HomeSearch',
-      name:'HomeSearch',
-      component:  () => import('@/views/Home/HomeSearch')
-      },{
-      path: 'ShoppingCart',
-      name:'ShoppingCart',
-      component:  () => import('@/views/ShoppingCart/ShoppingCart')
-      },{
-      path: 'Me',
-      name:'Me',
-      component: () => import('@/views/UserCenter/Me')
-      },{
-      path: 'MyOrder',
-      name:'MyOrder',
-      component: () => import('@/views/UserCenter/MyOrder')
-      },{
-      path: 'ProductCategory',
-      name:'ProductCategory',
-      component: () => import('@/views/ProductCategory/ProductCategory')
+        path: 'Home',
+        name: 'Home',
+        component: Home
+      },
+      { 
+        path: 'HomeSearch',
+        name:'HomeSearch',
+        component:  () => import('@/views/Home/HomeSearch')
+      },
+      {
+        path: 'ShoppingCart',
+        name:'ShoppingCart',
+        component:  () => import('@/views/ShoppingCart/ShoppingCart')
+      },
+      {
+        path: 'Me',
+        name:'Me',
+        component: () => import('@/views/UserCenter/Me')
+      },
+      {
+        path: 'MyOrder',
+        name:'MyOrder',
+        component: () => import('@/views/UserCenter/MyOrder')
+      },
+      {
+        path: 'NewDressing',
+        name:'NewDressing',
+        component: () => import('@/views/Home/NewDressing')
+      },
+      {
+        path: 'BossRecommendation',
+        name:'BossRecommendation',
+        component: () => import('@/views/Home/BossRecommendation')
+      },
+      {
+        path: 'ProductCategory',
+        name:'ProductCategory',
+        component: () => import('@/views/ProductCategory/ProductCategory')
       }
     ]
   },
