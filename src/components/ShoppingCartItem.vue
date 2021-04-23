@@ -1,21 +1,5 @@
 <template>
   <div>
-    <!-- <van-checkbox-group v-model="ItemsSelected" @change="ListChange" ref="CheckboxGroup">
-        <van-row v-for="(item,key) in ItemList" :key="key" style="display:flex;align-items:center">
-          <van-col :span='2'>
-            <van-checkbox v-if="Radio" class="checkbox" :name="item.cart_item_id"></van-checkbox>
-          </van-col>
-          <van-col :span='22'>
-            <van-card :num="item.quantity" :price="item.price" :title="item.name" :thumb="item.photo">
-              <template #tags>
-                <div style="display:inline-block">已选择：</div>
-                <van-tag plain type="danger" style="margin-right:5px">{{item.color_name}}</van-tag>
-                <van-tag plain type="danger">{{item.size_name}}码</van-tag>
-              </template>
-            </van-card>
-          </van-col>
-        </van-row>
-    </van-checkbox-group> -->
     
     <van-checkbox-group v-for="(item1,index1) in List" :key="index1" v-model="ItemsSelected" style="position:absolute;left:10px;right:10px">
 
@@ -40,24 +24,27 @@
           <van-checkbox shape="square" :name="item2.cartitem_id"></van-checkbox>
         </van-col>
         <van-col>
-          <van-image :src="item2.photo" width="95" height="130"></van-image>
+          <van-image :src="item2.photo" width="80" height="110"></van-image>
         </van-col>
-        <van-col>
+        <van-col style="width:100%">
           <van-row class="goodname row">
             {{item2.name}}
           </van-row>
           <van-row class="row">
-            <van-cell style="width:208px;padding-top:0px;padding-bottom:0px;border:#B0B0B0 solid 1px;border-radius:10px" :value="`${item2.color_name}  ${item2.size_name}`" is-link arrow-direction="down"></van-cell>
+            <van-cell style=" padding-top:0px;padding-bottom:0px;border:#B0B0B0 solid 1px;border-radius:10px" :value="`${item2.color_name}  ${item2.size_name}`" is-link arrow-direction="down"></van-cell>
           </van-row>
-          <van-row class="row" style="display:flex;align-items:center">
-            <span style="font-size:12px">件数：</span>
-            <van-button class="count-button" icon="minus" size="mini"></van-button>
-            <van-button class="count-button" size="mini" style="width:30px">{{item2.quantity}}</van-button>
-            <van-button class="count-button" icon="plus" size="mini"></van-button>
+          <van-row class="row">
+            <span style="text-decoration:line-through;color:#FF4444"><span class="original-price">吊牌价:￥256</span></span>
           </van-row>
-          <van-row style="display:flex;align-items:center">
-            <span class="original-price" style="line-height:32px">￥256</span>
-            <van-button class="price" round color="#EC3A23" size="mini" style="position:absolute;right:0px">优惠后 ￥233.90</van-button>
+          <van-row type="flex" justify="space-between">
+            <van-col>
+              <van-button class="price" round color="#EC3A23" size="mini">优惠后 ￥233.90</van-button>
+            </van-col>
+            <van-col>
+              <van-button class="count-button" icon="minus" size="mini"></van-button>
+              <van-button class="count-button" size="mini" style="width:30px">{{item2.quantity}}</van-button>
+              <van-button class="count-button" icon="plus" size="mini"></van-button>
+            </van-col>
           </van-row>
         </van-col>
       </van-row>
@@ -138,20 +125,21 @@ export default {
 
 <style scoped>
 .row{
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
 }
 
 .span{
-  margin-left: 10px;
+  margin-left:0.625rem;
 }
 
 .goodcard{
-  margin-top: 40px;
-  margin-left: 15px;
+  margin-top: 1.25rem;
+  margin-left: 1rem;
 }
 
 .goodname{
   font-size: 12px;
+  font-weight: bold;
 }
 
 .count-button{
@@ -159,11 +147,13 @@ export default {
 }
 
 .original-price{
-  font-size: 14px;
+  color:black;
+  font-size:10px;
+  margin-left:0.3rem;
 }
 
 .price{
-  font-size: 14px;
+  font-size: 12px;
 }
 
 </style>
