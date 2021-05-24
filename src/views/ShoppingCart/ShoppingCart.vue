@@ -102,6 +102,8 @@
           </van-row>
         </van-row>
 
+        <van-divider :style="{borderColor:'#797979',marginBottom:'0',marginTop:'2.25rem',marginLeft:'1rem',marginRight:'1rem'}"></van-divider>
+
         <van-row class="actionsheet__layoutbypart">
           <van-row class="actionsheet__titlebypart">活动优惠</van-row>
           <van-row class="actionsheet__contextone" type='flex' justify='space-between'>
@@ -128,7 +130,7 @@
 </template>
 
 <script>
-import { Card, SubmitBar, NavBar, Checkbox, Button, Icon, ActionSheet } from 'vant';
+import { Card, SubmitBar, NavBar, Checkbox, Button, Icon, ActionSheet, Divider } from 'vant';
 import ShoppingCartItem from '@/components/ShoppingCartItem.vue'
 import { getShoppingCartItem, getCheckout } from '@/api/ShoppingCart'
 
@@ -144,7 +146,8 @@ export default {
     [Checkbox.name]:Checkbox,
     [Button.name]:Button,
     [Icon.name]:Icon,
-    [ActionSheet.name]:ActionSheet
+    [ActionSheet.name]:ActionSheet,
+    [Divider.name]:Divider
   },
 
   data(){

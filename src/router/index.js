@@ -80,6 +80,11 @@ const routes = [
         path: 'ProductCategory',
         name:'ProductCategory',
         component: () => import('@/views/ProductCategory/ProductCategory')
+      },
+      {
+        path: 'WishList',
+        name:'WishList',
+        component: () => import('@/views/WishList/WishList')
       }
     ]
   },

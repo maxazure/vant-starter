@@ -22,10 +22,10 @@
     <van-divider :style="{borderColor:'#BBBBBB'}"></van-divider>
     <div class="title">{{product.name}}</div>
     <div class="subtitle">{{product.intro}}</div>
+    
     <van-goods-action>
       <van-goods-action-icon icon="chat-o" text="客服" dot />
       <van-goods-action-icon icon="cart-o" text="购物车" badge="5" @click="$router.push({name:'ShoppingCart'})"/>
-      <van-goods-action-icon icon="shop-o" text="店铺" badge="12" />
       <van-goods-action-button type="warning" text="加入购物车" @click="showcard = !showcard"/>
       <van-goods-action-button type="danger" text="立即购买" @click="showcard = !showcard"/>
     </van-goods-action>
@@ -53,14 +53,6 @@
         <!-- 上下两个v-for循环不能都用key作为“:key”，会出现因重复的key的报错 -->
         <div v-for="(item,key) in sizetable" :key="item.sku" :class="{SizeButton_Inactive: !item.active,SizeButton_Active: item.active}" @click="chooseSize(item.size_id,key)">{{item.name}}</div>
       </div>
-
-      <!-- <div style="margin:20px">
-        <div style="margin-bottom:10px">配送方式：</div>
-        <van-radio-group v-model=" ExpressDelivery">
-          <van-radio name="1" style="margin-bottom:10px">门店自提</van-radio>
-          <van-radio name="2" style="margin-bottom:10px">快递配送</van-radio>
-        </van-radio-group>
-      </div> -->
 
       <van-button style="width:100%;position:fixed;bottom:0" @click="confirm">确定</van-button>
     </van-action-sheet>
