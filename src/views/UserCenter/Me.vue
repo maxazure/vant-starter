@@ -18,12 +18,16 @@
       <van-cell clickable is-link center :to="{name:'RevisePersonalInfo',query:{page_name:'修改个人信息'}}">
         <template #title>修改个人信息</template>
       </van-cell>
+      <van-button @click="click">
+        退出登录
+      </van-button>
+      
     </van-cell-group>
   </div>
 </template>
 
 <script>
-import {CellGroup,Cell,Image as VanImage} from 'vant';
+import { CellGroup, Cell, Image as VanImage, Button} from 'vant';
 import { getInfo } from '@/api/user.js'
 
 export default {
@@ -31,7 +35,8 @@ export default {
   components:{
     [CellGroup.name]:CellGroup,
     [Cell.name]:Cell,
-    [VanImage.name]:VanImage
+    [VanImage.name]:VanImage,
+    [Button.name]:Button
   },
 
   data(){
@@ -45,6 +50,11 @@ export default {
       const response = await getInfo()
       this.me = response.data
       console.log(this.content);
+    },
+
+    async click(){
+      await this.$store.dispatch('user/logout')
+      this.$router.go(0)
     }
   },
 

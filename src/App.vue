@@ -8,7 +8,7 @@
 export default {
   name: 'App',
   created(){
-    document.title = "Vent Starter"
+    document.title = "美邦店铺"
   }
 }
 </script>
