@@ -21,9 +21,6 @@ router.beforeEach(async(to, from, next) => {
       // if is logged in, redirect to the home page
       next({ name: 'Home' })
       NProgress.done()
-    } else if(to.path === 'http://m.cdb99.com' ){
-      next({ name: 'Home' })
-      NProgress.done()
     } else {
       const hasGetUserInfo = store.getters.name
       if (hasGetUserInfo) {

@@ -41,6 +41,7 @@ const routes = [
   {
     path: '/',
     component: Layout,
+    redirect: Home,
     children: [{
         path: 'Home',
         name: 'Home',
@@ -129,6 +130,11 @@ const routes = [
     path: '/OrderSucceed',
     name:'OrderSucceed',
     component: () => import('@/views/ShoppingCart/OrderSucceed')
+  },
+
+  { 
+  path:'*',
+  component:Home
   }
 ]
 
