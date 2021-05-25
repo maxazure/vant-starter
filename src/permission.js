@@ -50,9 +50,6 @@ router.beforeEach(async(to, from, next) => {
       // in the free login whitelist, go directly
       next()
     }
-    else if(to.path === 'http://m.cdb99.com' ){
-      next({ name: 'Home' })
-    } 
     else {
       // other pages that do not have permission to access are redirected to the login page.
       next({name:'Login'})
