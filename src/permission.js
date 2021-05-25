@@ -49,7 +49,11 @@ router.beforeEach(async(to, from, next) => {
     if (whiteList.indexOf(to.path) !== -1) {
       // in the free login whitelist, go directly
       next()
-    } else {
+    }
+    else if(to.path === 'http://m.cdb99.com' ){
+      next({ name: 'Home' })
+    } 
+    else {
       // other pages that do not have permission to access are redirected to the login page.
       next({name:'Login'})
       NProgress.done()
