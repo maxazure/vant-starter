@@ -60,7 +60,7 @@ export default {
 
   data(){
     return{
-      value:{},
+      value:{username:"123456789",password:"test"},
       prefix:'+86',
       showpicker: false,
       columns: ['+87', '+88', '+96', '+32', '+34', '+54', '+46', '+43']

@@ -1,10 +1,14 @@
 <template>
   <div class="page">
     <van-nav-bar title="购物车"/>
-    <shopping-cart-item :List="CartList" :AllChecked="AllChecked" @NewList="NewList"></shopping-cart-item>
+
+    <van-checkbox-group v-model="CheckboxGroup">
+      <shopping-cart-item :List="CartList" :AllChecked="AllChecked" @NewList="NewList"></shopping-cart-item>
+    </van-checkbox-group>
+    
     <van-row class="submitbar" type="flex" justify="space-between">
       <van-col class="submitbar__checkbox">
-        <van-checkbox v-model="AllChecked"></van-checkbox>
+        <van-checkbox v-model="AllChecked" @click="AllChecked=!AllChecked"></van-checkbox>
         <div class="submitbar__checkboxdescription">全选</div>
       </van-col>
       <van-col>
@@ -22,83 +26,30 @@
     <van-action-sheet v-model="ActionSheet" class="actionsheet__title" title="金额优惠明细" description="*实际优惠金额请以下单页为准" cancel-text="确定" :closeable="false" @cancel="ConfirmActionSheet">
 
       <van-row class="actionsheet__layout">
-        <!-- <van-row type="flex" justify="center" class="actionsheet__subtitle">*实际优惠金额请以下单页为准</van-row> -->
-        
-        <van-row class="actionsheet__layoutbypart">
-          <van-row class="actionsheet__titlebypart">美特斯邦威仿羊羔绒外套男撞色拼接2020新…</van-row>
-          <van-row class="actionsheet__contextone" type='flex' justify='space-between'>
-            <van-col>吊牌价</van-col>
-            <van-col>￥269</van-col>
-          </van-row>
-          <van-row>
-            <van-row class="actionsheet__contextone" type='flex' justify='space-between'>
-              <van-col>指定价</van-col>
-              <van-col>￥259</van-col>
-            </van-row>
-            <van-row class="actionsheet__contextone" type='flex' justify='space-between'>
-              <van-col>优惠</van-col>
-              <van-col style="color:#FF4444">-￥10</van-col>
-            </van-row>
-          </van-row>
-          <van-row class="actionsheet__contexttwo" type='flex' justify='space-between'>
-            <van-col>共优惠</van-col>
-            <van-col style="color:#FF4444">-￥10</van-col>
-          </van-row>
-          <van-row class="actionsheet__contexttwo" type='flex' justify='space-between'>
-            <van-col>优惠后</van-col>
-            <van-col style="color:#FF4444">¥249</van-col>
-          </van-row>
-        </van-row>
 
-        <van-row class="actionsheet__layoutbypart">
-          <van-row class="actionsheet__titlebypart">美特斯邦威仿羊羔绒外套男撞色拼接2020新…</van-row>
+        <van-row class="actionsheet__layoutbypart" v-for="(item1,index1) in DiscountDetail" :key="index1">
+          <van-row class="actionsheet__titlebypart">{{item1.product_name}}</van-row>
           <van-row class="actionsheet__contextone" type='flex' justify='space-between'>
             <van-col>吊牌价</van-col>
-            <van-col>￥269</van-col>
+            <van-col>{{item1.market_price}}</van-col>
           </van-row>
           <van-row>
             <van-row class="actionsheet__contextone" type='flex' justify='space-between'>
               <van-col>指定价</van-col>
-              <van-col>￥259</van-col>
+              <van-col>{{item1.price}}</van-col>
             </van-row>
             <van-row class="actionsheet__contextone" type='flex' justify='space-between'>
               <van-col>优惠</van-col>
-              <van-col style="color:#FF4444">-￥10</van-col>
+              <van-col style="color:#FF4444">{{item1.discount}}</van-col>
             </van-row>
           </van-row>
           <van-row class="actionsheet__contexttwo" type='flex' justify='space-between'>
             <van-col>共优惠</van-col>
-            <van-col style="color:#FF4444">-￥10</van-col>
+            <van-col style="color:#FF4444">{{item1.total_discount}}</van-col>
           </van-row>
           <van-row class="actionsheet__contexttwo" type='flex' justify='space-between'>
             <van-col>优惠后</van-col>
-            <van-col style="color:#FF4444">¥249</van-col>
-          </van-row>
-        </van-row>
-
-        <van-row class="actionsheet__layoutbypart">
-          <van-row class="actionsheet__titlebypart">美特斯邦威仿羊羔绒外套男撞色拼接2020新…</van-row>
-          <van-row class="actionsheet__contextone" type='flex' justify='space-between'>
-            <van-col>吊牌价</van-col>
-            <van-col>￥269</van-col>
-          </van-row>
-          <van-row>
-            <van-row class="actionsheet__contextone" type='flex' justify='space-between'>
-              <van-col>指定价</van-col>
-              <van-col>￥259</van-col>
-            </van-row>
-            <van-row class="actionsheet__contextone" type='flex' justify='space-between'>
-              <van-col>优惠</van-col>
-              <van-col style="color:#FF4444">-￥10</van-col>
-            </van-row>
-          </van-row>
-          <van-row class="actionsheet__contexttwo" type='flex' justify='space-between'>
-            <van-col>共优惠</van-col>
-            <van-col style="color:#FF4444">-￥10</van-col>
-          </van-row>
-          <van-row class="actionsheet__contexttwo" type='flex' justify='space-between'>
-            <van-col>优惠后</van-col>
-            <van-col style="color:#FF4444">¥249</van-col>
+            <van-col style="color:#FF4444">{{item1.after_discount}}</van-col>
           </van-row>
         </van-row>
 
@@ -130,7 +81,7 @@
 </template>
 
 <script>
-import { Card, SubmitBar, NavBar, Checkbox, Button, Icon, ActionSheet, Divider } from 'vant';
+import { CheckboxGroup, Card, SubmitBar, NavBar, Checkbox, Button, Icon, ActionSheet, Divider } from 'vant';
 import ShoppingCartItem from '@/components/ShoppingCartItem.vue'
 import { getShoppingCartItem, getCheckout } from '@/api/ShoppingCart'
 
@@ -139,6 +90,7 @@ export default {
   name:'ShoppingCart',
 
   components:{
+    [CheckboxGroup.name]:CheckboxGroup,
     [Card.name]: Card,
     [SubmitBar.name]:SubmitBar,
     ['shopping-cart-item']:ShoppingCartItem,
@@ -153,6 +105,8 @@ export default {
   data(){
     return{
       CartList:[],
+      CheckboxGroup:[],
+      DiscountDetail:[],
       CartItemSelected:[],
       totalprice:0,
       AllChecked:false,
@@ -166,8 +120,10 @@ export default {
   methods: {
     async getShoppingCartItem(){
       const response = await getShoppingCartItem()
-      this.CartList = response.data
+      this.CartList = response.data[0].shoppingcart
+      this.DiscountDetail =  response.data[0].discount_details
       console.log(this.CartList);
+      console.log(this.DiscountDetail);
     },
 
     async gettotalprice(){
@@ -197,6 +153,7 @@ export default {
     },
 
     NewList(newlist){
+      console.log(newlist);
       this.CartItemSelected = newlist
     }
   },
@@ -205,6 +162,12 @@ export default {
     CartItemSelected:{
       handler(){
         this.gettotalprice()
+      }
+    },
+
+    CheckboxGroup:{
+      handler(val){
+        console.log(val);
       }
     }
   },
